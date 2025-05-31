@@ -39,7 +39,7 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
-            name="(aluno)/ListAlunoScreen"
+            name="aluno/ListAlunoScreen"
             options={{
               title: "Alunos",
               headerTitleAlign: "center",
@@ -47,7 +47,7 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
-              name="(aluno)/EditAlunoScreen"
+              name="aluno/EditAlunoScreen"
               options={{
                 title: "Aluno",
                 headerTitleAlign: "center",

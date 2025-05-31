@@ -9,7 +9,7 @@ const AlunoCard = ({ name }: { name: string }) => {
   return (
     <Card
       mode="outlined"
-      onPress={() => router.push("/EditAlunoScreen")}
+      onPress={() => router.push("/aluno/EditAlunoScreen")}
       contentStyle={{ padding: 8 }}
       style={{ marginBottom: 8 }}
     >

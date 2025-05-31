@@ -18,7 +18,7 @@ export default function Index() {
         data={alunos.slice(0, 2)}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <AlunoCard name={item.name} />}
-        route={"/ListAlunoScreen"}
+        route={"/aluno/ListAlunoScreen"}
       />
       <Quadrant
         title="Sessões"
