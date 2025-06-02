@@ -1,11 +1,11 @@
 export class Sessao {
-  id: number;
+  id: string;
   name: string;
   date: string;
   status: "Agendado" | "Cancelado" | "Concluído" | "Aberto";
 
   constructor(
-    id: number,
+    id: string,
     name: string,
     date: string,
     status: "Agendado" | "Cancelado" | "Concluído" | "Aberto"
