@@ -12,7 +12,8 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "br.com.joanadarc.test01",
+      "googleServicesFile": "./google-services.json",
+      "package": "br.com.joanadarc.espacosaber",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -26,6 +27,7 @@
     },
     "plugins": [
       "expo-router",
+      "@react-native-firebase/app",
       [
         "expo-splash-screen",
         {

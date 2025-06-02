@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37944924858",
+    "project_id": "espacosaber-df577",
+    "storage_bucket": "espacosaber-df577.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37944924858:android:80d3a0e68e6340e3a60083",
+        "android_client_info": {
+          "package_name": "br.com.joanadarc.espacosaber"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCto1IfNW9BJBuhD00q9l_zRlypWvyalak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
