@@ -1,17 +1,18 @@
 import AlunoCard from "@/components/AlunoCard";
 import Quadrant from "@/components/Quadrant";
 import SessaoCard from "@/components/SessaoCard";
-import sessoes from "@/constants/SessaoList";
 import "@/global.css";
 import React, {useEffect, useState} from "react";
 import { View } from "react-native";
 import { useTheme } from "react-native-paper";
 import {AlunoService} from "@/api/services/AlunoService";
+import {SessaoService} from "@/api/services/SessaoService";
 
 export default function Index() {
   const theme = useTheme();
 
-  const [alunos, setAlunos] = useState<any[]>([])
+  const [alunos, setAlunos] = useState<any[]>([]);
+  const [sessoes, setSessoes] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchAlunos = async () => {
@@ -26,13 +27,26 @@ export default function Index() {
     fetchAlunos().then();
   }, []);
 
+  useEffect(() => {
+    const fetchSessoes = async () => {
+      try {
+        const sessaoService = new SessaoService();
+        const fetchedSessoes = await sessaoService.getSessoes();
+        setSessoes(fetchedSessoes);
+      } catch (error) {
+        console.error('Error fetching alunos:', error);
+      }
+    };
+    fetchSessoes().then();
+  }, []);
+
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <Quadrant
         title="Alunos"
         data={alunos.slice(0, 2)}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <AlunoCard name={item.name} />}
+        renderItem={({ item }) => <AlunoCard name={item.nome} />}
         route={"/aluno/ListAlunoScreen"}
       />
       <Quadrant

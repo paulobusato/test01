@@ -1,14 +1,29 @@
 import NameCard from "@/components/NameCard";
 import SearchInput from "@/components/SearchInput";
-import responsaveis from "@/constants/ResponsavelList";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { FlatList, View } from "react-native";
+import {ResponsavelService} from "@/api/services/ResponsavelService";
 
 import { FAB, useTheme } from "react-native-paper";
 
 const ListResponsavelScreen = () => {
   const theme = useTheme();
   const [text, setText] = React.useState("");
+
+  const [responsaveis, setResponsaveis] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchResponsaveis = async () => {
+      try {
+        const responsavelService = new ResponsavelService();
+        const fetchedResponsaveis = await responsavelService.getResponsaveis();
+        setResponsaveis(fetchedResponsaveis);
+      } catch (error) {
+        console.error('Error fetching alunos:', error);
+      }
+    };
+    fetchResponsaveis().then();
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
