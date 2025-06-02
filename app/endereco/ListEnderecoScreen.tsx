@@ -1,19 +1,18 @@
 import NameCard from "@/components/NameCard";
 import SearchInput from "@/components/SearchInput";
-import responsaveis from "@/constants/ResponsavelList";
 import React, {useEffect, useState} from "react";
 import {FlatList, View} from "react-native";
 
 import {FAB, useTheme} from "react-native-paper";
 import {useLocalSearchParams, useNavigation} from "expo-router";
-import logradouros from "@/constants/LogradouroList";
 import {Logradouro} from "@/constants/models/Logradouro";
 import {Bairro} from "@/constants/models/Bairro";
-import bairros from "@/constants/BairroList";
-import cidades from "@/constants/CidadeList";
-import estados from "@/constants/EstadoList";
 import { Estado } from "@/constants/models/Estado";
 import {Cidade} from "@/constants/models/Cidade";
+import {LogradouroService} from "@/api/services/LogradouroService";
+import {CidadeService} from "@/api/services/CidadeService";
+import {BairroService} from "@/api/services/BairroService";
+import {EstadoService} from "@/api/services/EstadoService";
 
 const ListEnderecoScreen = () => {
   const theme = useTheme();
@@ -29,13 +28,49 @@ const ListEnderecoScreen = () => {
       navigation.setOptions({title: params.title})
 
       if (params.title === "Logradouro") {
-        setData(logradouros);
+        const fetchLogradouros = async () => {
+          try {
+            const logradouroService = new LogradouroService();
+            const fetchedLogradouros = await logradouroService.getLogradouros();
+            setData(fetchedLogradouros);
+          } catch (error) {
+            console.error('Error fetching alunos:', error);
+          }
+        };
+        fetchLogradouros().then();
       } else if (params.title === "Bairro") {
-        setData(bairros);
+        const fetchBairros = async () => {
+          try {
+            const bairroService = new BairroService();
+            const fetchedBairros = await bairroService.getBairros();
+            setData(fetchedBairros);
+          } catch (error) {
+            console.error('Error fetching alunos:', error);
+          }
+        };
+        fetchBairros().then();
       } else if (params.title === "Cidade") {
-        setData(cidades);
+        const fetchCidades = async () => {
+          try {
+            const cidadeService = new CidadeService();
+            const fetchedCidades = await cidadeService.getCidades();
+            setData(fetchedCidades);
+          } catch (error) {
+            console.error('Error fetching alunos:', error);
+          }
+        };
+        fetchCidades().then();
       } else if (params.title === "Estado") {
-        setData(estados);
+        const fetchEstados = async () => {
+          try {
+            const estadoService = new EstadoService();
+            const fetchedEstados = await estadoService.getEstados();
+            setData(fetchedEstados);
+          } catch (error) {
+            console.error('Error fetching alunos:', error);
+          }
+        };
+        fetchEstados().then();
       }
 
     }
