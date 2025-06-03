@@ -1,9 +1,4 @@
-export class Bairro {
+export interface Bairro {
   id: string;
   name: string;
-
-  constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
-  }
 }

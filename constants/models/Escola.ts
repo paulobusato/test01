@@ -1,9 +1,4 @@
-export class Escola {
+export interface Escola {
   id: string;
   name: string;
-
-  constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
-  }
 }
