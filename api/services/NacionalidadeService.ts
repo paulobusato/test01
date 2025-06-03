@@ -8,7 +8,7 @@ export class NacionalidadeService {
     const snapshot = await this.collection.get();
     return snapshot.docs.map((doc) => {
       const data = doc.data();
-      return new Nacionalidade(doc.id, data.nome);
+      return { id: doc.id, name: data.nome };
     });
   }
 
@@ -17,6 +17,6 @@ export class NacionalidadeService {
     if (!doc.exists()) return null;
 
     const data = doc.data();
-    return data ? new Nacionalidade(doc.id, data.nome) : null;
+    return data ? { id: doc.id, name: data.nome } : null;
   }
 }

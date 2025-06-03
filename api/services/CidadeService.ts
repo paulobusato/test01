@@ -8,7 +8,7 @@ export class CidadeService {
     const snapshot = await this.collection.get();
     return snapshot.docs.map((doc) => {
       const data = doc.data();
-      return new Cidade(doc.id, data.nome);
+      return { id: doc.id, name: data.nome };
     });
   }
 
@@ -17,6 +17,6 @@ export class CidadeService {
     if (!doc.exists()) return null;
 
     const data = doc.data();
-    return data ? new Cidade(doc.id, data.nome) : null;
+    return data ? { id: doc.id, name: data.nome } : null;
   }
 }
