@@ -5,31 +5,23 @@ import "@/global.css";
 import React, {useEffect, useState} from "react";
 import { View } from "react-native";
 import { useTheme } from "react-native-paper";
-import {AlunoService} from "@/api/services/AlunoService";
 import {SessaoService} from "@/api/services/SessaoService";
 
-import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { increment, decrement } from '../store/slices/counterSlice';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { fetchAlunos } from '@/store/slices/alunoSlice';
+
 
 
 export default function Index() {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
 
-  const [alunos, setAlunos] = useState<any[]>([]);
+  const { alunos } = useAppSelector((state) => state.aluno);
   const [sessoes, setSessoes] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchAlunos = async () => {
-      try {
-        const alunoService = new AlunoService();
-        const fetchedAlunos = await alunoService.getAlunos();
-        setAlunos(fetchedAlunos);
-      } catch (error) {
-        console.error('Error fetching alunos:', error);
-      }
-    };
-    fetchAlunos().then();
-  }, []);
+    dispatch(fetchAlunos());
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchSessoes = async () => {
@@ -44,19 +36,10 @@ export default function Index() {
     fetchSessoes().then();
   }, []);
 
-  const count = useAppSelector((state) => state.counter.value);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    setInterval(() => {
-      dispatch(increment());
-    }, 1000)
-  }, []);
-
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <Quadrant
-        title={`Alunos ${count}`}
+        title="Alunos"
         data={alunos.slice(0, 2)}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <AlunoCard name={item.nome} />}
