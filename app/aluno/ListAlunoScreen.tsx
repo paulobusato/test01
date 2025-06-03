@@ -17,7 +17,7 @@ const ListAlunoScreen = () => {
         <FlatList
           data={alunos}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <AlunoCard name={item.name} />}
+          renderItem={({ item }) => <AlunoCard name={item.nome} />}
         />
       </View>
       <FAB

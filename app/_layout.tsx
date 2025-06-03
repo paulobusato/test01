@@ -122,6 +122,22 @@ export default function RootLayout() {
                   headerShadowVisible: false,
                 }}
             />
+            <Stack.Screen
+                name="logradouro/ListLogradouroScreen"
+                options={{
+                  title: "Logradouros",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="logradouro/EditLogradouroScreen"
+                options={{
+                  title: "Logradouro",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
           </Stack>
         </PaperProvider>
       </SafeAreaProvider>

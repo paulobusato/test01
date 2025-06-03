@@ -139,10 +139,7 @@ const EditAlunoScreen = () => {
                 <TextInput
                     value={logradouro}
                     onChangeText={(text) => setLogradouro(text)}
-                    left={<TextInput.Icon icon="magnify" onPress={() => router.push({
-                      pathname: "/endereco/ListEnderecoScreen",
-                      params: {title: "Logradouro"}
-                    })}/>}
+                    left={<TextInput.Icon icon="magnify" onPress={() => router.push("logradouro/ListLogradouroScreen")}/>}
                     label="Logradouro"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
