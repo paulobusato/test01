@@ -138,6 +138,54 @@ export default function RootLayout() {
                   headerShadowVisible: false,
                 }}
             />
+            <Stack.Screen
+                name="bairro/ListBairroScreen"
+                options={{
+                  title: "Bairros",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="bairro/EditBairroScreen"
+                options={{
+                  title: "Bairro",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="cidade/ListCidadeScreen"
+                options={{
+                  title: "Cidades",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="cidade/EditCidadeScreen"
+                options={{
+                  title: "Cidade",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="estado/ListEstadoScreen"
+                options={{
+                  title: "Estados",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="estado/EditEstadoScreen"
+                options={{
+                  title: "Estado",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
           </Stack>
         </PaperProvider>
       </SafeAreaProvider>

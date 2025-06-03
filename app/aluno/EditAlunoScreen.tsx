@@ -139,7 +139,8 @@ const EditAlunoScreen = () => {
                 <TextInput
                     value={logradouro}
                     onChangeText={(text) => setLogradouro(text)}
-                    left={<TextInput.Icon icon="magnify" onPress={() => router.push("logradouro/ListLogradouroScreen")}/>}
+                    left={<TextInput.Icon icon="magnify"
+                                          onPress={() => router.push("logradouro/ListLogradouroScreen")}/>}
                     label="Logradouro"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -161,10 +162,8 @@ const EditAlunoScreen = () => {
                 <TextInput
                     value={bairro}
                     onChangeText={(text) => setBairro(text)}
-                    left={<TextInput.Icon icon="magnify" onPress={() => router.push({
-                      pathname: "/endereco/ListEnderecoScreen",
-                      params: {title: "Bairro"}
-                    })}/>}
+                    left={<TextInput.Icon icon="magnify"
+                                          onPress={() => router.push("bairro/ListBairroScreen")}/>}
                     label="Bairro"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -179,10 +178,8 @@ const EditAlunoScreen = () => {
                 <TextInput
                     value={cidade}
                     onChangeText={(text) => setCidade(text)}
-                    left={<TextInput.Icon icon="magnify" onPress={() => router.push({
-                      pathname: "/endereco/ListEnderecoScreen",
-                      params: {title: "Cidade"}
-                    })}/>}
+                    left={<TextInput.Icon icon="magnify"
+                                          onPress={() => router.push("cidade/ListCidadeScreen")}/>}
                     label="Cidade"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -190,10 +187,8 @@ const EditAlunoScreen = () => {
                 <TextInput
                     value={estado}
                     onChangeText={(text) => setEstado(text)}
-                    left={<TextInput.Icon icon="magnify" onPress={() => router.push({
-                      pathname: "/endereco/ListEnderecoScreen",
-                      params: {title: "Estado"}
-                    })}/>}
+                    left={<TextInput.Icon icon="magnify"
+                                          onPress={() => router.push("estado/ListEstadoScreen")}/>}
                     label="Estado"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
