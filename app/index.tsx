@@ -8,6 +8,10 @@ import { useTheme } from "react-native-paper";
 import {AlunoService} from "@/api/services/AlunoService";
 import {SessaoService} from "@/api/services/SessaoService";
 
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { increment, decrement } from '../store/slices/counterSlice';
+
+
 export default function Index() {
   const theme = useTheme();
 
@@ -40,10 +44,19 @@ export default function Index() {
     fetchSessoes().then();
   }, []);
 
+  const count = useAppSelector((state) => state.counter.value);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setInterval(() => {
+      dispatch(increment());
+    }, 1000)
+  }, []);
+
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <Quadrant
-        title="Alunos"
+        title={`Alunos ${count}`}
         data={alunos.slice(0, 2)}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <AlunoCard name={item.nome} />}
