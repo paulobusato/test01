@@ -1,16 +1,33 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {View} from "react-native";
 
 import {FAB, SegmentedButtons, TextInput, useTheme} from "react-native-paper";
 import {useRouter} from "expo-router";
+import {useLocalSearchParams} from "expo-router";
+
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
+import {fetchAluno} from "@/store/slices/alunoSlice";
+
 
 const EditAlunoScreen = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
+
+  const { aluno } = useAppSelector((state) => state.aluno);
+
+  useEffect(() => {
+    dispatch(fetchAluno(params.id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log(aluno);
+  }, [aluno]);
 
   const [tab, setTab] = useState("pessoal");
 
-  const [nome, setNome] = useState("Gabriela Angelo");
+  const [nome, setNome] = useState(aluno.nome);
   const [responsavel, setResponsavel] = useState("Joana D'Arc");
   const [cpf, setCPF] = useState("111.222.333-44")
   const [telefone, setTelefone] = useState("(33) 1234-5678")

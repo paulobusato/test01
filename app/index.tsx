@@ -28,7 +28,7 @@ export default function Index() {
         title="Alunos"
         data={alunos.slice(0, 2)}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <AlunoCard name={item.nome} />}
+        renderItem={({ item }) => <AlunoCard id={item.id} name={item.nome} />}
         route={"/aluno/ListAlunoScreen"}
       />
       <Quadrant
