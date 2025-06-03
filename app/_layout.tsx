@@ -186,6 +186,38 @@ export default function RootLayout() {
                   headerShadowVisible: false,
                 }}
             />
+            <Stack.Screen
+                name="escola/ListEscolaScreen"
+                options={{
+                  title: "Escolas",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="escola/EditEscolaScreen"
+                options={{
+                  title: "Escola",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="turno/ListTurnoScreen"
+                options={{
+                  title: "Turnos",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
+            <Stack.Screen
+                name="turno/EditTurnoScreen"
+                options={{
+                  title: "Turno",
+                  headerTitleAlign: "center",
+                  headerShadowVisible: false,
+                }}
+            />
           </Stack>
         </PaperProvider>
       </SafeAreaProvider>

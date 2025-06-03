@@ -111,7 +111,8 @@ const EditAlunoScreen = () => {
                 <TextInput
                     value={escola}
                     onChangeText={(text) => setEscola(text)}
-                    left={<TextInput.Icon icon="magnify"/>}
+                    left={<TextInput.Icon icon="magnify"
+                                          onPress={() => router.push("escola/ListEscolaScreen")}/>}
                     label="Escola"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -126,7 +127,8 @@ const EditAlunoScreen = () => {
                 <TextInput
                     value={turno}
                     onChangeText={(text) => setTurno(text)}
-                    left={<TextInput.Icon icon="magnify"/>}
+                    left={<TextInput.Icon icon="magnify"
+                                          onPress={() => router.push("turno/ListTurnoScreen")}/>}
                     label="Turno"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
