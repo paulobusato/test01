@@ -57,4 +57,19 @@ export class AlunoService {
       estado: data.estado
     } : null;
   }
+
+  async update(id: string, aluno: Partial<Aluno>): Promise<void> {
+    try {
+      const {id: _, ...updatedAluno} = aluno;
+
+      const sanitizedAluno = Object.fromEntries(
+          Object.entries(updatedAluno).filter(([_, value]) => value !== undefined)
+      );
+
+      await this.collection.doc(id).update(sanitizedAluno);
+    } catch (error) {
+      console.error("Error updating aluno:", error);
+      throw error;
+    }
+  }
 }

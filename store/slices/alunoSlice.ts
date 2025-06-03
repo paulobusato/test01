@@ -46,6 +46,20 @@ export const fetchAluno = createAsyncThunk(
     }
 );
 
+export const updateAluno = createAsyncThunk(
+    'aluno/updateAluno',
+    async ({ id, data }: { id: string, data: Partial<Aluno> }, { rejectWithValue }) => {
+      try {
+        const alunoService = new AlunoService();
+        await alunoService.update(id, data);
+        return { id, ...data };
+      } catch {
+        return rejectWithValue('Failed to update aluno');
+      }
+    }
+);
+
+
 
 export const alunoSlice = createSlice({
   name: 'aluno',
@@ -85,6 +99,25 @@ export const alunoSlice = createSlice({
           state.error = action.payload as string;
           state.aluno = null;
         })
+        // Handle updateAluno
+        .addCase(updateAluno.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(updateAluno.fulfilled, (state, action) => {
+          state.loading = false;
+          state.aluno = { ...state.aluno, ...action.payload } as Aluno;
+          state.alunos = state.alunos.map(aluno =>
+              aluno.id === action.payload.id ?
+                  { ...aluno, ...action.payload } :
+                  aluno
+          );
+        })
+        .addCase(updateAluno.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        })
+
   }
 });
 

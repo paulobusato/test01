@@ -6,7 +6,7 @@ import {useRouter} from "expo-router";
 import {useLocalSearchParams} from "expo-router";
 
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {fetchAluno} from "@/store/slices/alunoSlice";
+import {fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
 
 
 const EditAlunoScreen = () => {
@@ -15,19 +15,63 @@ const EditAlunoScreen = () => {
   const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
-  const { aluno } = useAppSelector((state) => state.aluno);
+  const {aluno} = useAppSelector((state) => state.aluno);
 
   useEffect(() => {
     dispatch(fetchAluno(params.id));
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(aluno);
+    if (aluno) {
+      setNome(aluno.nome || "");
+      setResponsavel(aluno.responsavel || "");
+      setCPF(aluno.cpf || "");
+      setTelefone(aluno.telefone || "");
+      setEmail(aluno.email || "");
+      setDataNascimento(aluno.dataNascimento || "");
+      setRG(aluno.rg || "");
+      setEscola(aluno.escola || "");
+      setSerie(aluno.serie || "");
+      setTurno(aluno.turno || "");
+      setLogradouro(aluno.logradouro || "");
+      setNumero(aluno.numero || "");
+      setComplemento(aluno.complemento || "");
+      setBairro(aluno.bairro || "");
+      setCEP(aluno.cep || "");
+      setCidade(aluno.cidade || "");
+      setEstado(aluno.estado || "");
+    }
   }, [aluno]);
+
+  const handleSave = async () => {
+    dispatch(updateAluno({
+      id: params.id,
+      data: {
+        ...aluno,
+        nome,
+        responsavel,
+        cpf,
+        telefone,
+        email,
+        dataNascimento,
+        rg,
+        escola,
+        serie,
+        turno,
+        logradouro,
+        numero,
+        complemento,
+        bairro,
+        cep,
+        cidade,
+        estado
+      }
+    }));
+  };
 
   const [tab, setTab] = useState("pessoal");
 
-  const [nome, setNome] = useState("Gabi");
+  const [nome, setNome] = useState(aluno?.nome);
   const [responsavel, setResponsavel] = useState("Joana D'Arc");
   const [cpf, setCPF] = useState("111.222.333-44")
   const [telefone, setTelefone] = useState("(33) 1234-5678")
@@ -70,14 +114,14 @@ const EditAlunoScreen = () => {
           {tab === "pessoal" && (
               <>
                 <TextInput
-                    value={aluno?.nome}
+                    value={nome}
                     onChangeText={(text) => setNome(text)}
                     label="Nome"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.responsavel}
+                    value={responsavel}
                     onChangeText={(text) => setResponsavel(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/responsavel/ListResponsavelScreen")}/>}
@@ -86,35 +130,35 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.cpf}
+                    value={cpf}
                     onChangeText={(text) => setCPF(text)}
                     label="CPF"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.telefone}
+                    value={telefone}
                     onChangeText={(text) => setTelefone(text)}
                     label="Telefone"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.email}
+                    value={email}
                     onChangeText={(text) => setEmail(text)}
                     label="E-mail"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.dataNascimento}
+                    value={dataNascimento}
                     onChangeText={(text) => setDataNascimento(text)}
                     label="Data de Nascimento"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.rg}
+                    value={rg}
                     onChangeText={(text) => setRG(text)}
                     label="RG"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
@@ -126,7 +170,7 @@ const EditAlunoScreen = () => {
           {tab === "escolar" && (
               <>
                 <TextInput
-                    value={aluno?.escola}
+                    value={escola}
                     onChangeText={(text) => setEscola(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/escola/ListEscolaScreen")}/>}
@@ -135,14 +179,14 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.serie}
+                    value={serie}
                     onChangeText={(text) => setSerie(text)}
                     label="Série"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.turno}
+                    value={turno}
                     onChangeText={(text) => setTurno(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/turno/ListTurnoScreen")}/>}
@@ -156,7 +200,7 @@ const EditAlunoScreen = () => {
           {tab === "endereco" && (
               <>
                 <TextInput
-                    value={aluno?.logradouro}
+                    value={logradouro}
                     onChangeText={(text) => setLogradouro(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/logradouro/ListLogradouroScreen")}/>}
@@ -165,21 +209,21 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.numero}
+                    value={numero}
                     onChangeText={(text) => setNumero(text)}
                     label="Número"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.complemento}
+                    value={complemento}
                     onChangeText={(text) => setComplemento(text)}
                     label="Complemento"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.bairro}
+                    value={bairro}
                     onChangeText={(text) => setBairro(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/bairro/ListBairroScreen")}/>}
@@ -188,14 +232,14 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.cep}
+                    value={cep}
                     onChangeText={(text) => setCEP(text)}
                     label="CEP"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.cidade}
+                    value={cidade}
                     onChangeText={(text) => setCidade(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/cidade/ListCidadeScreen")}/>}
@@ -204,7 +248,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={aluno?.estado}
+                    value={estado}
                     onChangeText={(text) => setEstado(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/estado/ListEstadoScreen")}/>}
@@ -223,7 +267,7 @@ const EditAlunoScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Pressed")}
+            onPress={handleSave}
         />
       </View>
   );
