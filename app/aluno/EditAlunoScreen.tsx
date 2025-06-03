@@ -27,7 +27,7 @@ const EditAlunoScreen = () => {
 
   const [tab, setTab] = useState("pessoal");
 
-  const [nome, setNome] = useState(aluno.nome);
+  const [nome, setNome] = useState("Gabi");
   const [responsavel, setResponsavel] = useState("Joana D'Arc");
   const [cpf, setCPF] = useState("111.222.333-44")
   const [telefone, setTelefone] = useState("(33) 1234-5678")
@@ -70,14 +70,14 @@ const EditAlunoScreen = () => {
           {tab === "pessoal" && (
               <>
                 <TextInput
-                    value={nome}
+                    value={aluno?.nome}
                     onChangeText={(text) => setNome(text)}
                     label="Nome"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={responsavel}
+                    value={aluno?.responsavel}
                     onChangeText={(text) => setResponsavel(text)}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/responsavel/ListResponsavelScreen")}/>}
@@ -86,35 +86,35 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={cpf}
+                    value={aluno?.cpf}
                     onChangeText={(text) => setCPF(text)}
                     label="CPF"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={telefone}
+                    value={aluno?.telefone}
                     onChangeText={(text) => setTelefone(text)}
                     label="Telefone"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={email}
+                    value={aluno?.email}
                     onChangeText={(text) => setEmail(text)}
                     label="E-mail"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={dataNascimento}
+                    value={aluno?.dataNascimento}
                     onChangeText={(text) => setDataNascimento(text)}
                     label="Data de Nascimento"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={rg}
+                    value={aluno?.rg}
                     onChangeText={(text) => setRG(text)}
                     label="RG"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
@@ -126,26 +126,26 @@ const EditAlunoScreen = () => {
           {tab === "escolar" && (
               <>
                 <TextInput
-                    value={escola}
+                    value={aluno?.escola}
                     onChangeText={(text) => setEscola(text)}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("escola/ListEscolaScreen")}/>}
+                                          onPress={() => router.push("/escola/ListEscolaScreen")}/>}
                     label="Escola"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={serie}
+                    value={aluno?.serie}
                     onChangeText={(text) => setSerie(text)}
                     label="Série"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={turno}
+                    value={aluno?.turno}
                     onChangeText={(text) => setTurno(text)}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("turno/ListTurnoScreen")}/>}
+                                          onPress={() => router.push("/turno/ListTurnoScreen")}/>}
                     label="Turno"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -156,58 +156,58 @@ const EditAlunoScreen = () => {
           {tab === "endereco" && (
               <>
                 <TextInput
-                    value={logradouro}
+                    value={aluno?.logradouro}
                     onChangeText={(text) => setLogradouro(text)}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("logradouro/ListLogradouroScreen")}/>}
+                                          onPress={() => router.push("/logradouro/ListLogradouroScreen")}/>}
                     label="Logradouro"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={numero}
+                    value={aluno?.numero}
                     onChangeText={(text) => setNumero(text)}
                     label="Número"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={complemento}
+                    value={aluno?.complemento}
                     onChangeText={(text) => setComplemento(text)}
                     label="Complemento"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={bairro}
+                    value={aluno?.bairro}
                     onChangeText={(text) => setBairro(text)}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("bairro/ListBairroScreen")}/>}
+                                          onPress={() => router.push("/bairro/ListBairroScreen")}/>}
                     label="Bairro"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={cep}
+                    value={aluno?.cep}
                     onChangeText={(text) => setCEP(text)}
                     label="CEP"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={cidade}
+                    value={aluno?.cidade}
                     onChangeText={(text) => setCidade(text)}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("cidade/ListCidadeScreen")}/>}
+                                          onPress={() => router.push("/cidade/ListCidadeScreen")}/>}
                     label="Cidade"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={estado}
+                    value={aluno?.estado}
                     onChangeText={(text) => setEstado(text)}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("estado/ListEstadoScreen")}/>}
+                                          onPress={() => router.push("/estado/ListEstadoScreen")}/>}
                     label="Estado"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}

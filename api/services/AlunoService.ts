@@ -1,4 +1,4 @@
-import { Aluno } from "@/constants/models/Aluno";
+import {Aluno} from "@/constants/models/Aluno";
 import firestore from "@react-native-firebase/firestore";
 
 export class AlunoService {
@@ -8,7 +8,26 @@ export class AlunoService {
     const snapshot = await this.collection.get();
     return snapshot.docs.map((doc) => {
       const data = doc.data();
-      return { id: doc.id, nome: data.nome };
+      return {
+        id: doc.id,
+        nome: data.nome,
+        responsavel: data.responsavel,
+        cpf: data.cpf,
+        telefone: data.telefone,
+        email: data.email,
+        dataNascimento: data.dataNascimento,
+        rg: data.rg,
+        escola: data.escola,
+        serie: data.serie,
+        turno: data.turno,
+        logradouro: data.logradouro,
+        numero: data.numero,
+        complemento: data.complemento,
+        bairro: data.bairro,
+        cep: data.cep,
+        cidade: data.cidade,
+        estado: data.estado
+      };
     });
   }
 
@@ -17,6 +36,25 @@ export class AlunoService {
     if (!doc.exists()) return null;
 
     const data = doc.data();
-    return data ? { id: doc.id, nome: data.nome } : null;
+    return data ? {
+      id: doc.id,
+      nome: data.nome,
+      responsavel: data.responsavel,
+      cpf: data.cpf,
+      telefone: data.telefone,
+      email: data.email,
+      dataNascimento: data.dataNascimento,
+      rg: data.rg,
+      escola: data.escola,
+      serie: data.serie,
+      turno: data.turno,
+      logradouro: data.logradouro,
+      numero: data.numero,
+      complemento: data.complemento,
+      bairro: data.bairro,
+      cep: data.cep,
+      cidade: data.cidade,
+      estado: data.estado
+    } : null;
   }
 }

@@ -74,6 +74,7 @@ export const alunoSlice = createSlice({
         .addCase(fetchAluno.pending, (state) => {
           state.loading = true;
           state.error = null;
+          state.aluno = null;
         })
         .addCase(fetchAluno.fulfilled, (state, action: PayloadAction<Aluno>) => {
           state.loading = false;
