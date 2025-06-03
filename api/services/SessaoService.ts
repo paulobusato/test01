@@ -8,7 +8,7 @@ export class SessaoService {
     const snapshot = await this.collection.get();
     return snapshot.docs.map((doc) => {
       const data = doc.data();
-      return new Sessao(doc.id, data.nome, data.data, data.status);
+      return { id: doc.id, name: data.nome, date: data.data, status: data.status };
     });
   }
 
@@ -17,6 +17,6 @@ export class SessaoService {
     if (!doc.exists()) return null;
 
     const data = doc.data();
-    return data ? new Sessao(doc.id, data.nome, data.data, data.status) : null;
+    return data ? { id: doc.id, name: data.nome, date: data.data, status: data.status } : null;
   }
 }
