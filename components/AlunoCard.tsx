@@ -17,7 +17,9 @@ const AlunoCard = ({id, name}: { id: string, name: string }) => {
           style={{marginBottom: 8}}
       >
         <Card.Content>
-          <Text variant="bodyMedium">{name}</Text>
+          <Text variant="bodyMedium" style={{ fontWeight: "bold" }}>
+            {name}
+          </Text>
         </Card.Content>
       </Card>
   );
