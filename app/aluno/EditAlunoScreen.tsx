@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {View} from "react-native";
 
-import {FAB, SegmentedButtons, TextInput, useTheme} from "react-native-paper";
+import {ActivityIndicator, FAB, SegmentedButtons, TextInput, useTheme} from "react-native-paper";
 import {useRouter} from "expo-router";
 import {useLocalSearchParams} from "expo-router";
 
@@ -15,7 +15,7 @@ const EditAlunoScreen = () => {
   const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
-  const {aluno} = useAppSelector((state) => state.aluno);
+  const {aluno, loading} = useAppSelector((state) => state.aluno);
 
   useEffect(() => {
     dispatch(fetchAluno(params.id));
@@ -90,6 +90,16 @@ const EditAlunoScreen = () => {
   const [cep, setCEP] = useState("12345-678")
   const [cidade, setCidade] = useState("Cachoeiro de Itapemirim")
   const [estado, setEstado] = useState("RJ")
+
+  if (loading) {
+    return (
+        <View
+            style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: theme.colors.background}}>
+          <ActivityIndicator animating={true} size="large" color={theme.colors.primary}/>
+        </View>
+    );
+  }
+
 
   return (
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
