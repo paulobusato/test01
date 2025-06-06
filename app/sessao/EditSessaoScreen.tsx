@@ -1,22 +1,51 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {View} from "react-native";
 
-import {FAB, SegmentedButtons, TextInput, useTheme} from "react-native-paper";
-import {useRouter} from "expo-router";
+import {ActivityIndicator, FAB, TextInput, useTheme} from "react-native-paper";
+import {useLocalSearchParams, useRouter} from "expo-router";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
+import {fetchSessao} from "@/store/slices/sessaoSlice";
 
 const EditSessaoScreen = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
-  const [queixa, setQueixa] = useState("Relatou a vítima que o acusado, no dia xx de xxxx de xxxx, em local xxxx, proferiu xxxx ofensas à sua pessoa, xxxx, causando-lhe grande abalo moral e reputação.");
-  const [encaminhamento, setEncaminhamento] = useState("Encaminho o(a) paciente [nome completo] que informa/apresenta [informe os seguintes\n" +
-      "dados subjetivos e objetivos mais relevantes para justificar o encaminhamento, em especial\n" +
-      "descreva os sinais de alerta e as condições especiais, quando houver] para avaliação.");
-  const [atividade, setAtividade] = useState("Atividade Exemplo");
-  const [observacao, setObservacao] = useState("Pellentesque nec felis nec sem interdum scelerisque et vitae quam. Proin mollis ultricies ex, sed ornare nulla gravida sit amet. Pellentesque faucibus, est quis commodo imperdiet, arcu urna auctor turpis, eget tempus magna sapien sed neque");
-  const [data, setData] = useState("31/05/2025 15:00");
-  const [status, setStatus] = useState("Aberto");
-  const [procedimento, setProcedimento] = useState("Procedimento Teste");
+  const {sessao, loading} = useAppSelector((state) => state.sessao);
+
+  useEffect(() => {
+    dispatch(fetchSessao(params.id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (sessao) {
+      setQueixa(sessao.queixa || "");
+      setEncaminhamento(sessao.encaminhamento || "");
+      setAtividade(sessao.atividade || "");
+      setObservacao(sessao.observacao || "");
+      setData(sessao.date || "");
+      setStatus(sessao.status || "");
+      setProcedimento(sessao.procedimento || "");
+    }
+  }, [sessao]);
+
+  const [queixa, setQueixa] = useState("");
+  const [encaminhamento, setEncaminhamento] = useState("");
+  const [atividade, setAtividade] = useState("");
+  const [observacao, setObservacao] = useState("");
+  const [data, setData] = useState("");
+  const [status, setStatus] = useState("");
+  const [procedimento, setProcedimento] = useState("");
+
+  if (loading) {
+    return (
+        <View
+            style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: theme.colors.background}}>
+          <ActivityIndicator animating={true} size="large" color={theme.colors.primary}/>
+        </View>
+    );
+  }
 
   return (
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
