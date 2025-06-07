@@ -9,14 +9,14 @@ export class AtividadeService {
     return snapshot.docs.map((doc) => {
       const data = doc.data();
       return {
-        id: data.id,
+        id: doc.id,
         name: data.nome,
         descricao: data.descricao,
         categoria: data.categoria,
         assuntos: data.assuntos,
-        areaAplicacao: data.AreaAplicacao,
+        areaAplicacao: data.areaAplicacao,
         dataCadastro: data.dataCadastro,
-        dataAtualizacao: data.Atualizacao
+        dataAtualizacao: data.dataAtualizacao
       };
     });
   }
@@ -27,14 +27,14 @@ export class AtividadeService {
 
     const data = doc.data();
     return data ? {
-      id: data.id,
+      id: doc.id,
       name: data.nome,
       descricao: data.descricao,
       categoria: data.categoria,
       assuntos: data.assuntos,
-      areaAplicacao: data.AreaAplicacao,
+      areaAplicacao: data.areaAplicacao,
       dataCadastro: data.dataCadastro,
-      dataAtualizacao: data.Atualizacao
+      dataAtualizacao: data.dataAtualizacao
     } : null;
   }
 }
