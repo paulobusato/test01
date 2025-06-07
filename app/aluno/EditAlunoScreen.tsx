@@ -6,8 +6,30 @@ import {useRouter} from "expo-router";
 import {useLocalSearchParams} from "expo-router";
 
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
+import {addAluno, fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
 
+
+/*
+
+  const [formData, setFormData] = useState({
+    nome: "",
+    cpf: "",
+    telefone: "",
+    // Add all required fields here
+  });
+
+  const onSubmit = async () => {
+    try {
+      await dispatch(addAluno(formData)).unwrap();
+      alert("Aluno added successfully!");
+    } catch {
+      alert("Failed to add aluno. Please try again.");
+    }
+  };
+
+  value={formData.nome}
+
+* */
 
 const EditAlunoScreen = () => {
   const theme = useTheme();
@@ -40,6 +62,33 @@ const EditAlunoScreen = () => {
     setCidade(aluno?.cidade || "");
     setEstado(aluno?.estado || "");
   }, [aluno]);
+
+  const handleCreation = async () => {
+    try {
+      await dispatch(addAluno({
+        ...aluno,
+        nome,
+        responsavel,
+        cpf,
+        telefone,
+        email,
+        dataNascimento,
+        rg,
+        escola,
+        serie,
+        turno,
+        logradouro,
+        numero,
+        complemento,
+        bairro,
+        cep,
+        cidade,
+        estado
+      }));
+    } catch {
+      alert("Failed to add aluno. Please try again.");
+    }
+};
 
   const handleSave = async () => {
     dispatch(updateAluno({
@@ -275,7 +324,7 @@ const EditAlunoScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={handleSave}
+            onPress={aluno?.id ? handleSave : handleCreation}
         />
       </View>
   );

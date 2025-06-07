@@ -58,6 +58,23 @@ export class AlunoService {
     } : null;
   }
 
+  async add(aluno: Partial<Aluno>): Promise<Aluno> {
+    try {
+      const {id: _, ...updatedAluno} = aluno;
+
+      const sanitizedAluno = Object.fromEntries(
+          Object.entries(updatedAluno).filter(([_, value]) => value !== undefined)
+      );
+
+      const docRef = await this.collection.add(sanitizedAluno);
+
+      return { id: docRef.id, ...sanitizedAluno } as Aluno;
+    } catch (error) {
+      console.error("Error updating aluno:", error);
+      throw error;
+    }
+  }
+
   async update(id: string, aluno: Partial<Aluno>): Promise<void> {
     try {
       const {id: _, ...updatedAluno} = aluno;
