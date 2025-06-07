@@ -48,7 +48,7 @@ export const fetchAluno = createAsyncThunk(
 
 export const addAluno = createAsyncThunk(
     'aluno/addAluno',
-    async (data: Partial<Aluno>, { rejectWithValue }) => {
+    async (data: Partial<Aluno>, {rejectWithValue}) => {
       try {
         const alunoService = new AlunoService();
         return await alunoService.add(data);
@@ -60,18 +60,29 @@ export const addAluno = createAsyncThunk(
 
 export const updateAluno = createAsyncThunk(
     'aluno/updateAluno',
-    async ({ id, data }: { id: string, data: Partial<Aluno> }, { rejectWithValue }) => {
+    async ({id, data}: { id: string, data: Partial<Aluno> }, {rejectWithValue}) => {
       try {
         const alunoService = new AlunoService();
         await alunoService.update(id, data);
-        return { id, ...data };
+        return {id, ...data};
       } catch {
         return rejectWithValue('Failed to update aluno');
       }
     }
 );
 
-
+export const deleteAluno = createAsyncThunk(
+    'aluno/deleteAluno',
+    async (id: string, {rejectWithValue}) => {
+      try {
+        const alunoService = new AlunoService();
+        await alunoService.delete(id);
+        return id;
+      } catch {
+        return rejectWithValue('Failed to delete aluno');
+      }
+    }
+);
 
 export const alunoSlice = createSlice({
   name: 'aluno',
@@ -132,10 +143,10 @@ export const alunoSlice = createSlice({
         })
         .addCase(updateAluno.fulfilled, (state, action) => {
           state.loading = false;
-          state.aluno = { ...state.aluno, ...action.payload } as Aluno;
+          state.aluno = {...state.aluno, ...action.payload} as Aluno;
           state.alunos = state.alunos.map(aluno =>
               aluno.id === action.payload.id ?
-                  { ...aluno, ...action.payload } :
+                  {...aluno, ...action.payload} :
                   aluno
           );
         })
@@ -143,6 +154,20 @@ export const alunoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
         })
+        // Handle deleteAluno
+        .addCase(deleteAluno.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(deleteAluno.fulfilled, (state, action) => {
+          state.loading = false;
+          state.alunos = state.alunos.filter(aluno => aluno.id !== action.payload);
+        })
+        .addCase(deleteAluno.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        });
+
   }
 });
 

@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {View} from "react-native";
 import {ActivityIndicator, FAB, SegmentedButtons, TextInput, useTheme} from "react-native-paper";
-import {useRouter} from "expo-router";
-import {useLocalSearchParams} from "expo-router";
+import {useLocalSearchParams, useRouter} from "expo-router";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {addAluno, fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
+import {addAluno, deleteAluno, fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
 
 const EditAlunoScreen = () => {
   const theme = useTheme();
@@ -56,7 +55,7 @@ const EditAlunoScreen = () => {
     } catch {
       alert("Failed to add aluno. Please try again.");
     }
-};
+  };
 
   const handleSave = async () => {
     try {
@@ -72,6 +71,26 @@ const EditAlunoScreen = () => {
       alert("Failed to update aluno. Please try again.");
     }
   };
+
+
+
+  useEffect(() => {
+    // @ts-ignore
+    window["handleDelete"] = async () => {
+      try {
+        await dispatch(deleteAluno(params.id));
+        router.navigate("/aluno/ListAlunoScreen");
+      } catch {
+        alert("Failed to delete aluno. Please try again.");
+      }
+    };
+
+    return () => {
+      // @ts-ignore
+      delete window["handleDelete"];
+    };
+  }, [dispatch, params.id, router]);
+
 
   if (loading) {
     return (

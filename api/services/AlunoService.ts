@@ -89,4 +89,13 @@ export class AlunoService {
       throw error;
     }
   }
+
+  async delete(id: string): Promise<void> {
+    try {
+      await this.collection.doc(id).delete();
+    } catch (error) {
+      console.error("Error deleting aluno:", error);
+      throw error;
+    }
+  }
 }
