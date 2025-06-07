@@ -20,6 +20,7 @@ const EditSessaoScreen = () => {
 
   useEffect(() => {
     if (sessao) {
+      setAluno(sessao.name || "");
       setQueixa(sessao.queixa || "");
       setEncaminhamento(sessao.encaminhamento || "");
       setAtividade(sessao.atividade || "");
@@ -30,6 +31,7 @@ const EditSessaoScreen = () => {
     }
   }, [sessao]);
 
+  const [aluno, setAluno] = useState("");
   const [queixa, setQueixa] = useState("");
   const [encaminhamento, setEncaminhamento] = useState("");
   const [atividade, setAtividade] = useState("");
@@ -51,46 +53,21 @@ const EditSessaoScreen = () => {
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
           <TextInput
-              value={queixa}
-              onChangeText={(text) => setQueixa(text)}
-              label="Queixa"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
-              multiline={true}
-              numberOfLines={5}
-              style={{marginBottom: 16, minHeight: 100}}
-          />
-          <TextInput
-              value={encaminhamento}
-              onChangeText={(text) => setEncaminhamento(text)}
-              label="Encaminhamento"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
-              multiline={true}
-              numberOfLines={5}
-              style={{marginBottom: 16, minHeight: 100}}
-          />
-          <TextInput
-              value={atividade}
-              onChangeText={(text) => setAtividade(text)}
-              left={<TextInput.Icon icon="magnify" onPress={() => router.push("/atividade/ListAtividadeScreen")} />}
-              label="Atividade"
+              value={aluno}
+              onChangeText={(text) => setAluno(text)}
+              left={<TextInput.Icon icon="magnify" onPress={() => router.push("//aluno/ListAlunoScreen")}/>}
+              label="Aluno"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               editable={false}
               style={{marginBottom: 16}}
           />
           <TextInput
-              value={observacao}
-              onChangeText={(text) => setObservacao(text)}
-              label="Observação"
+              value={atividade}
+              onChangeText={(text) => setAtividade(text)}
+              left={<TextInput.Icon icon="magnify" onPress={() => router.push("/atividade/ListAtividadeScreen")}/>}
+              label="Atividade"
               right={<TextInput.Icon icon="close-circle-outline"/>}
-              multiline={true}
-              numberOfLines={5}
-              style={{marginBottom: 16, minHeight: 100}}
-          />
-          <TextInput
-              value={data}
-              onChangeText={(text) => setData(text)}
-              label="Data e Hora"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
+              editable={false}
               style={{marginBottom: 16}}
           />
           <TextInput
@@ -110,6 +87,40 @@ const EditSessaoScreen = () => {
               right={<TextInput.Icon icon="close-circle-outline"/>}
               editable={false}
               style={{marginBottom: 16}}
+          />
+          <TextInput
+              value={data}
+              onChangeText={(text) => setData(text)}
+              label="Data e Hora"
+              right={<TextInput.Icon icon="close-circle-outline"/>}
+              style={{marginBottom: 16}}
+          />
+          <TextInput
+              value={queixa}
+              onChangeText={(text) => setQueixa(text)}
+              label="Queixa"
+              right={<TextInput.Icon icon="close-circle-outline"/>}
+              multiline={true}
+              numberOfLines={5}
+              style={{marginBottom: 16, minHeight: 100}}
+          />
+          <TextInput
+              value={encaminhamento}
+              onChangeText={(text) => setEncaminhamento(text)}
+              label="Encaminhamento"
+              right={<TextInput.Icon icon="close-circle-outline"/>}
+              multiline={true}
+              numberOfLines={5}
+              style={{marginBottom: 16, minHeight: 100}}
+          />
+          <TextInput
+              value={observacao}
+              onChangeText={(text) => setObservacao(text)}
+              label="Observação"
+              right={<TextInput.Icon icon="close-circle-outline"/>}
+              multiline={true}
+              numberOfLines={5}
+              style={{marginBottom: 16, minHeight: 100}}
           />
         </View>
         <FAB
