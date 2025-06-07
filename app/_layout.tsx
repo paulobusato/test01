@@ -136,29 +136,6 @@ export default function RootLayout() {
                   }}
               />
               <Stack.Screen
-                  name="endereco/ListEnderecoScreen"
-                  options={{
-                    title: "Endereços",
-                    headerTitleAlign: "center",
-                    headerShadowVisible: false,
-                  }}
-              />
-              <Stack.Screen
-                  name="endereco/EditEnderecoScreen"
-                  options={{
-                    title: "Endereço",
-                    headerTitleAlign: "center",
-                    headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
-              />
-              <Stack.Screen
                   name="logradouro/ListLogradouroScreen"
                   options={{
                     title: "Logradouros",

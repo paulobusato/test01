@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import {View} from "react-native";
+import {FAB, TextInput, useTheme} from "react-native-paper";
 
-import {FAB, SegmentedButtons, TextInput, useTheme} from "react-native-paper";
-import ListResponsavelScreen from "@/app/responsavel/ListResponsavelScreen";
-
-const EditEnderecoScreen = () => {
+const EditScreen = () => {
   const theme = useTheme();
 
   const [nome, setNome] = useState("Gabriela Angelo");
@@ -34,4 +32,4 @@ const EditEnderecoScreen = () => {
   );
 };
 
-export default EditEnderecoScreen;
+export default EditScreen;
