@@ -6,11 +6,13 @@ import { FlatList, View } from "react-native";
 import { FAB, useTheme } from "react-native-paper";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import { fetchResponsaveis } from '@/store/slices/responsavelSlice';
+import {useRouter} from "expo-router";
 
 
 const ListResponsavelScreen = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [text, setText] = React.useState("");
 
@@ -39,7 +41,7 @@ const ListResponsavelScreen = () => {
           right: 0,
           bottom: 0,
         }}
-        onPress={() => console.log("Pressed")}
+        onPress={() => router.push("/responsavel/EditResponsavelScreen")}
       />
     </View>
   );

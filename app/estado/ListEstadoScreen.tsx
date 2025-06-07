@@ -7,11 +7,13 @@ import {FAB, useTheme} from "react-native-paper";
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { fetchEstados } from '@/store/slices/estadoSlice';
+import { useRouter } from "expo-router";
 
 
 const ListEstadoScreen = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [text, setText] = React.useState("");
 
@@ -40,7 +42,7 @@ const ListEstadoScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Estado")}
+            onPress={() => router.push("/estado/EditEstadoScreen")}
         />
       </View>
   );

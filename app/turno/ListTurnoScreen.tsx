@@ -7,11 +7,13 @@ import {FAB, useTheme} from "react-native-paper";
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { fetchTurnos } from '@/store/slices/turnoSlice';
+import {useRouter} from "expo-router";
 
 
 const ListTurnoScreen = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [text, setText] = React.useState("");
 
@@ -40,7 +42,7 @@ const ListTurnoScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Turno")}
+            onPress={() => router.push("/turno/EditTurnoScreen")}
         />
       </View>
   );

@@ -7,11 +7,13 @@ import {FAB, useTheme} from "react-native-paper";
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { fetchLogradouros } from '@/store/slices/logradouroSlice';
+import {useRouter} from "expo-router";
 
 
 const ListLogradouroScreen = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [text, setText] = React.useState("");
 
@@ -40,7 +42,7 @@ const ListLogradouroScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Logradouro")}
+            onPress={() => router.push("/logradouro/EditLogradouroScreen")}
         />
       </View>
   );

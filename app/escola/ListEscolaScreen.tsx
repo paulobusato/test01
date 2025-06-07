@@ -7,11 +7,13 @@ import {FAB, useTheme} from "react-native-paper";
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { fetchEscolas } from '@/store/slices/escolaSlice';
+import {useRouter} from "expo-router";
 
 
 const ListEscolaScreen = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [text, setText] = React.useState("");
 
@@ -40,7 +42,7 @@ const ListEscolaScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Escola")}
+            onPress={() => router.push("/escola/EditEscolaScreen")}
         />
       </View>
   );

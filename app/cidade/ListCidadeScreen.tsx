@@ -7,11 +7,13 @@ import {FAB, useTheme} from "react-native-paper";
 
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { fetchCidades } from '@/store/slices/cidadeSlice';
+import {useRouter} from "expo-router";
 
 
 const ListCidadeScreen = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const [text, setText] = React.useState("");
 
@@ -40,7 +42,7 @@ const ListCidadeScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Cidade")}
+            onPress={() => router.push("/cidade/EditCidadeScreen")}
         />
       </View>
   );

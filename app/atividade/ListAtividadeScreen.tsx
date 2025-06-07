@@ -5,9 +5,12 @@ import React from "react";
 import { FlatList, View } from "react-native";
 
 import { FAB, useTheme } from "react-native-paper";
+import {useRouter} from "expo-router";
 
 const ListAtividadeScreen = () => {
   const theme = useTheme();
+  const router = useRouter();
+
   const [text, setText] = React.useState("");
 
   return (
@@ -22,14 +25,14 @@ const ListAtividadeScreen = () => {
       </View>
       <FAB
         icon="plus"
-        label="Responsável"
+        label="Atividade"
         style={{
           position: "absolute",
           margin: 16,
           right: 0,
           bottom: 0,
         }}
-        onPress={() => console.log("Pressed")}
+        onPress={() => router.push("//atividade/EditAtividadeScreen")}
       />
     </View>
   );
