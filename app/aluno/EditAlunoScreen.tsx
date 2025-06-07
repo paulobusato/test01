@@ -22,25 +22,23 @@ const EditAlunoScreen = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (aluno) {
-      setNome(aluno.nome || "");
-      setResponsavel(aluno.responsavel || "");
-      setCPF(aluno.cpf || "");
-      setTelefone(aluno.telefone || "");
-      setEmail(aluno.email || "");
-      setDataNascimento(aluno.dataNascimento || "");
-      setRG(aluno.rg || "");
-      setEscola(aluno.escola || "");
-      setSerie(aluno.serie || "");
-      setTurno(aluno.turno || "");
-      setLogradouro(aluno.logradouro || "");
-      setNumero(aluno.numero || "");
-      setComplemento(aluno.complemento || "");
-      setBairro(aluno.bairro || "");
-      setCEP(aluno.cep || "");
-      setCidade(aluno.cidade || "");
-      setEstado(aluno.estado || "");
-    }
+    setNome(aluno?.nome || "");
+    setResponsavel(aluno?.responsavel || "");
+    setCPF(aluno?.cpf || "");
+    setTelefone(aluno?.telefone || "");
+    setEmail(aluno?.email || "");
+    setDataNascimento(aluno?.dataNascimento || "");
+    setRG(aluno?.rg || "");
+    setEscola(aluno?.escola || "");
+    setSerie(aluno?.serie || "");
+    setTurno(aluno?.turno || "");
+    setLogradouro(aluno?.logradouro || "");
+    setNumero(aluno?.numero || "");
+    setComplemento(aluno?.complemento || "");
+    setBairro(aluno?.bairro || "");
+    setCEP(aluno?.cep || "");
+    setCidade(aluno?.cidade || "");
+    setEstado(aluno?.estado || "");
   }, [aluno]);
 
   const handleSave = async () => {

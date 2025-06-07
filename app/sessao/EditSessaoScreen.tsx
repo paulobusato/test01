@@ -19,16 +19,14 @@ const EditSessaoScreen = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (sessao) {
-      setAluno(sessao.name || "");
-      setQueixa(sessao.queixa || "");
-      setEncaminhamento(sessao.encaminhamento || "");
-      setAtividade(sessao.atividade || "");
-      setObservacao(sessao.observacao || "");
-      setData(sessao.date || "");
-      setStatus(sessao.status || "");
-      setProcedimento(sessao.procedimento || "");
-    }
+      setAluno(sessao?.name || "");
+      setQueixa(sessao?.queixa || "");
+      setEncaminhamento(sessao?.encaminhamento || "");
+      setAtividade(sessao?.atividade || "");
+      setObservacao(sessao?.observacao || "");
+      setData(sessao?.date || "");
+      setStatus(sessao?.status || "");
+      setProcedimento(sessao?.procedimento || "");
   }, [sessao]);
 
   const [aluno, setAluno] = useState("");
