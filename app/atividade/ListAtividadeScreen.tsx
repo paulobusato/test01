@@ -1,13 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useAppSelector, useAppDispatch} from '@/store/hooks';
 import ListScreen from "@/components/ListScreen";
+import {fetchAtividades} from "@/store/slices/atividadeSlice";
 
 const ListAtividadeScreen = () => {
-  const [text, setText] = React.useState("");
+  const dispatch = useAppDispatch();
+
+  const {atividades} = useAppSelector((state) => state.atividade);
+
+  useEffect(() => {
+    dispatch(fetchAtividades());
+  }, [dispatch]);
 
   return (
       <ListScreen
           fabLabel={"Atividade"}
-          data={[]}
+          data={atividades}
           route={"/atividade/EditAtividadeScreen"}
       />
   );

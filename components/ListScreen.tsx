@@ -8,10 +8,11 @@ import {Logradouro} from "@/constants/models/Logradouro";
 import {Bairro} from "@/constants/models/Bairro";
 import {Estado} from "@/constants/models/Estado";
 import {Cidade} from "@/constants/models/Cidade";
+import {Atividade} from "@/constants/models/Atividade";
 
 export interface ListEnderecoScreenProps {
   fabLabel: string,
-  data: Logradouro[] | Bairro[] | Cidade[] | Estado[],
+  data: Logradouro[] | Bairro[] | Cidade[] | Estado[] | Atividade[],
   route: Href,
 }
 

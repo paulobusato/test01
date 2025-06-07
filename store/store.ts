@@ -10,6 +10,7 @@ import logradouroReducer from './slices/logradouroSlice';
 import nacionalidadeReducer from './slices/nacionalidadeSlice';
 import responsavelReducer from './slices/responsavelSlice';
 import turnoReducer from './slices/turnoSlice';
+import atividadeReducer from './slices/atividadeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
     nacionalidade: nacionalidadeReducer,
     responsavel: responsavelReducer,
     turno: turnoReducer,
+    atividade: atividadeReducer,
   },
 });
 
