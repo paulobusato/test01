@@ -1,35 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {View} from "react-native";
-
 import {ActivityIndicator, FAB, SegmentedButtons, TextInput, useTheme} from "react-native-paper";
 import {useRouter} from "expo-router";
 import {useLocalSearchParams} from "expo-router";
-
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {addAluno, fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
-
-
-/*
-
-  const [formData, setFormData] = useState({
-    nome: "",
-    cpf: "",
-    telefone: "",
-    // Add all required fields here
-  });
-
-  const onSubmit = async () => {
-    try {
-      await dispatch(addAluno(formData)).unwrap();
-      alert("Aluno added successfully!");
-    } catch {
-      alert("Failed to add aluno. Please try again.");
-    }
-  };
-
-  value={formData.nome}
-
-* */
 
 const EditAlunoScreen = () => {
   const theme = useTheme();
@@ -37,106 +12,66 @@ const EditAlunoScreen = () => {
   const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
+  const [tab, setTab] = useState("pessoal");
+
   const {aluno, loading} = useAppSelector((state) => state.aluno);
+
+  const [form, setForm] = useState({
+    nome: "",
+    responsavel: "",
+    cpf: "",
+    telefone: "",
+    email: "",
+    dataNascimento: "",
+    rg: "",
+    escola: "",
+    serie: "",
+    turno: "",
+    logradouro: "",
+    numero: "",
+    complemento: "",
+    bairro: "",
+    cep: "",
+    cidade: "",
+    estado: "",
+  });
 
   useEffect(() => {
     dispatch(fetchAluno(params.id));
   }, [dispatch]);
 
   useEffect(() => {
-    setNome(aluno?.nome || "");
-    setResponsavel(aluno?.responsavel || "");
-    setCPF(aluno?.cpf || "");
-    setTelefone(aluno?.telefone || "");
-    setEmail(aluno?.email || "");
-    setDataNascimento(aluno?.dataNascimento || "");
-    setRG(aluno?.rg || "");
-    setEscola(aluno?.escola || "");
-    setSerie(aluno?.serie || "");
-    setTurno(aluno?.turno || "");
-    setLogradouro(aluno?.logradouro || "");
-    setNumero(aluno?.numero || "");
-    setComplemento(aluno?.complemento || "");
-    setBairro(aluno?.bairro || "");
-    setCEP(aluno?.cep || "");
-    setCidade(aluno?.cidade || "");
-    setEstado(aluno?.estado || "");
+    if (aluno) {
+      setForm(aluno);
+    }
   }, [aluno]);
 
   const handleCreation = async () => {
     try {
       await dispatch(addAluno({
         ...aluno,
-        nome,
-        responsavel,
-        cpf,
-        telefone,
-        email,
-        dataNascimento,
-        rg,
-        escola,
-        serie,
-        turno,
-        logradouro,
-        numero,
-        complemento,
-        bairro,
-        cep,
-        cidade,
-        estado
+        ...form,
       }));
+      router.navigate("/aluno/ListAlunoScreen");
     } catch {
       alert("Failed to add aluno. Please try again.");
     }
 };
 
   const handleSave = async () => {
-    dispatch(updateAluno({
-      id: params.id,
-      data: {
-        ...aluno,
-        nome,
-        responsavel,
-        cpf,
-        telefone,
-        email,
-        dataNascimento,
-        rg,
-        escola,
-        serie,
-        turno,
-        logradouro,
-        numero,
-        complemento,
-        bairro,
-        cep,
-        cidade,
-        estado
-      }
-    }));
+    try {
+      await dispatch(updateAluno({
+        id: params.id,
+        data: {
+          ...aluno,
+          ...form,
+        }
+      }));
+      router.navigate("/aluno/ListAlunoScreen");
+    } catch {
+      alert("Failed to update aluno. Please try again.");
+    }
   };
-
-  const [tab, setTab] = useState("pessoal");
-
-  const [nome, setNome] = useState(aluno?.nome);
-  const [responsavel, setResponsavel] = useState("Joana D'Arc");
-  const [cpf, setCPF] = useState("111.222.333-44")
-  const [telefone, setTelefone] = useState("(33) 1234-5678")
-  const [email, setEmail] = useState("gabi@angelo.com")
-  const [dataNascimento, setDataNascimento] = useState("20/50/2098")
-  const [rg, setRG] = useState("22.333-11")
-
-  const [escola, setEscola] = useState("Escola de Tecnologia")
-  const [serie, setSerie] = useState("2 Ano")
-  const [turno, setTurno] = useState("Matutino")
-
-  const [logradouro, setLogradouro] = useState("Rua dos Bobos")
-  const [numero, setNumero] = useState("123")
-  const [complemento, setComplemento] = useState("Apto 123")
-  const [bairro, setBairro] = useState("Centro")
-  const [cep, setCEP] = useState("12345-678")
-  const [cidade, setCidade] = useState("Cachoeiro de Itapemirim")
-  const [estado, setEstado] = useState("RJ")
 
   if (loading) {
     return (
@@ -146,7 +81,6 @@ const EditAlunoScreen = () => {
         </View>
     );
   }
-
 
   return (
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
@@ -171,15 +105,15 @@ const EditAlunoScreen = () => {
           {tab === "pessoal" && (
               <>
                 <TextInput
-                    value={nome}
-                    onChangeText={(text) => setNome(text)}
+                    value={form.nome}
+                    onChangeText={(text) => setForm({...form, nome: text})}
                     label="Nome"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={responsavel}
-                    onChangeText={(text) => setResponsavel(text)}
+                    value={form.responsavel}
+                    onChangeText={(text) => setForm({...form, responsavel: text})}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/responsavel/ListResponsavelScreen")}/>}
                     label="Responsável"
@@ -187,36 +121,36 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={cpf}
-                    onChangeText={(text) => setCPF(text)}
+                    value={form.cpf}
+                    onChangeText={(text) => setForm({...form, cpf: text})}
                     label="CPF"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={telefone}
-                    onChangeText={(text) => setTelefone(text)}
+                    value={form.telefone}
+                    onChangeText={(text) => setForm({...form, telefone: text})}
                     label="Telefone"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={email}
-                    onChangeText={(text) => setEmail(text)}
+                    value={form.email}
+                    onChangeText={(text) => setForm({...form, email: text})}
                     label="E-mail"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={dataNascimento}
-                    onChangeText={(text) => setDataNascimento(text)}
+                    value={form.dataNascimento}
+                    onChangeText={(text) => setForm({...form, dataNascimento: text})}
                     label="Data de Nascimento"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={rg}
-                    onChangeText={(text) => setRG(text)}
+                    value={form.rg}
+                    onChangeText={(text) => setForm({...form, rg: text})}
                     label="RG"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -227,8 +161,8 @@ const EditAlunoScreen = () => {
           {tab === "escolar" && (
               <>
                 <TextInput
-                    value={escola}
-                    onChangeText={(text) => setEscola(text)}
+                    value={form.escola}
+                    onChangeText={(text) => setForm({...form, escola: text})}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/escola/ListEscolaScreen")}/>}
                     label="Escola"
@@ -236,15 +170,15 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={serie}
-                    onChangeText={(text) => setSerie(text)}
+                    value={form.serie}
+                    onChangeText={(text) => setForm({...form, serie: text})}
                     label="Série"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={turno}
-                    onChangeText={(text) => setTurno(text)}
+                    value={form.turno}
+                    onChangeText={(text) => setForm({...form, turno: text})}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/turno/ListTurnoScreen")}/>}
                     label="Turno"
@@ -257,8 +191,8 @@ const EditAlunoScreen = () => {
           {tab === "endereco" && (
               <>
                 <TextInput
-                    value={logradouro}
-                    onChangeText={(text) => setLogradouro(text)}
+                    value={form.logradouro}
+                    onChangeText={(text) => setForm({...form, logradouro: text})}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/logradouro/ListLogradouroScreen")}/>}
                     label="Logradouro"
@@ -266,22 +200,22 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={numero}
-                    onChangeText={(text) => setNumero(text)}
+                    value={form.numero}
+                    onChangeText={(text) => setForm({...form, numero: text})}
                     label="Número"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={complemento}
-                    onChangeText={(text) => setComplemento(text)}
+                    value={form.complemento}
+                    onChangeText={(text) => setForm({...form, complemento: text})}
                     label="Complemento"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={bairro}
-                    onChangeText={(text) => setBairro(text)}
+                    value={form.bairro}
+                    onChangeText={(text) => setForm({...form, bairro: text})}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/bairro/ListBairroScreen")}/>}
                     label="Bairro"
@@ -289,15 +223,15 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={cep}
-                    onChangeText={(text) => setCEP(text)}
+                    value={form.cep}
+                    onChangeText={(text) => setForm({...form, cep: text})}
                     label="CEP"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={cidade}
-                    onChangeText={(text) => setCidade(text)}
+                    value={form.cidade}
+                    onChangeText={(text) => setForm({...form, cidade: text})}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/cidade/ListCidadeScreen")}/>}
                     label="Cidade"
@@ -305,8 +239,8 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={estado}
-                    onChangeText={(text) => setEstado(text)}
+                    value={form.estado}
+                    onChangeText={(text) => setForm({...form, estado: text})}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push("/estado/ListEstadoScreen")}/>}
                     label="Estado"
