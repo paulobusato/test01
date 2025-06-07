@@ -37,7 +37,7 @@ const EditAlunoScreen = () => {
 
   useEffect(() => {
     dispatch(fetchAluno(params.id));
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   useEffect(() => {
     if (aluno) {
@@ -79,7 +79,7 @@ const EditAlunoScreen = () => {
     window["handleDelete"] = async () => {
       try {
         await dispatch(deleteAluno(params.id));
-        router.navigate("/aluno/ListAlunoScreen");
+        router.back();
       } catch {
         alert("Failed to delete aluno. Please try again.");
       }
