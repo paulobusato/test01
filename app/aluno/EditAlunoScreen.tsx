@@ -51,7 +51,7 @@ const EditAlunoScreen = () => {
         ...aluno,
         ...form,
       }));
-      router.navigate("/aluno/ListAlunoScreen");
+      router.back();
     } catch {
       alert("Failed to add aluno. Please try again.");
     }
@@ -66,7 +66,7 @@ const EditAlunoScreen = () => {
           ...form,
         }
       }));
-      router.navigate("/aluno/ListAlunoScreen");
+      router.back();
     } catch {
       alert("Failed to update aluno. Please try again.");
     }
