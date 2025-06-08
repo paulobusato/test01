@@ -29,7 +29,7 @@ const ListScreen = ({fabLabel, data, route}: ListEnderecoScreenProps) => {
           <FlatList
               data={data}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={({item}) => <NameCard name={item.name} route={route}/>}
+              renderItem={({item}) => <NameCard name={item.nome} route={route}/>}
           />
         </View>
         <FAB

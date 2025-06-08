@@ -19,7 +19,7 @@ const EditSessaoScreen = () => {
   }, [dispatch]);
 
   useEffect(() => {
-      setAluno(sessao?.name || "");
+      setAluno(sessao?.nome || "");
       setQueixa(sessao?.queixa || "");
       setEncaminhamento(sessao?.encaminhamento || "");
       setAtividade(sessao?.atividade || "");

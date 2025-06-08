@@ -31,7 +31,7 @@ const ListSessaoScreen = () => {
               renderItem={({item}) => (
                   <SessaoCard
                       id={item.id}
-                      name={item.name}
+                      name={item.nome}
                       date={item.date}
                       status={item.status}
                   />

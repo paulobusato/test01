@@ -17,7 +17,7 @@ const EditAtividadeScreen = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setNome(atividade?.name || "");
+    setNome(atividade?.nome || "");
     setDescricao(atividade?.descricao || "");
     setCategoria(atividade?.categoria || "");
     setAssuntos(atividade?.assuntos || "");
