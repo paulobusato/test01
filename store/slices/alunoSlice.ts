@@ -167,7 +167,6 @@ export const alunoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
         });
-
   }
 });
 

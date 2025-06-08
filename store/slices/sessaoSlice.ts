@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {Sessao} from "@/constants/models/Sessao";
 import {SessaoService} from "@/api/services/SessaoService";
+import {ApiService} from "@/api/services/ApiService";
 
 interface SessaoState {
   sessoes: Sessao[];
@@ -46,6 +47,31 @@ export const fetchSessao = createAsyncThunk(
     }
 );
 
+export const updateSessao = createAsyncThunk(
+    'sessao/updateSessao',
+    async ({id, data}: { id: string, data: Partial<Sessao> }, {rejectWithValue}) => {
+      try {
+        const apiService = new ApiService<Sessao>("sessoes");
+        await apiService.update(id, data);
+        return {id, ...data};
+      } catch {
+        return rejectWithValue('Failed to update aluno');
+      }
+    }
+);
+
+export const deleteSessao = createAsyncThunk(
+    'sessao/updateSessao',
+    async (id: string, {rejectWithValue}) => {
+      try {
+        const apiService = new ApiService<Sessao>("sessoes");
+        await apiService.delete(id);
+        return id;
+      } catch {
+        return rejectWithValue('Failed to delete aluno');
+      }
+    }
+);
 
 export const sessaoSlice = createSlice({
   name: 'sessao',
@@ -85,6 +111,37 @@ export const sessaoSlice = createSlice({
           state.error = action.payload as string;
           state.sessao = null;
         })
+        // Handle updateSessao
+        .addCase(updateSessao.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(updateSessao.fulfilled, (state, action) => {
+          state.loading = false;
+          state.sessao = {...state.sessao, ...action.payload} as Sessao;
+          state.sessoes = state.sessoes.map(sessao =>
+              sessao.id === action.payload.id ?
+                  {...sessao, ...action.payload} :
+                  sessao
+          );
+        })
+        .addCase(updateSessao.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        })
+        // Handle deleteSessao
+        .addCase(deleteSessao.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(deleteSessao.fulfilled, (state, action) => {
+          state.loading = false;
+          state.sessoes = state.sessoes.filter(sessao => sessao.id !== action.payload);
+        })
+        .addCase(deleteSessao.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        });
   }
 });
 

@@ -2,15 +2,18 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {Nacionalidade} from "@/constants/models/Nacionalidade";
 import {NacionalidadeService} from "@/api/services/NacionalidadeService";
+import {ApiService} from "@/api/services/ApiService";
 
 interface NacionalidadeState {
   nacionalidades: Nacionalidade[];
+  nacionalidade: Nacionalidade | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: NacionalidadeState = {
   nacionalidades: [],
+  nacionalidade: null,
   loading: false,
   error: null,
 };
@@ -27,6 +30,60 @@ export const fetchNacionalidades = createAsyncThunk(
     }
 );
 
+export const fetchNacionalidade = createAsyncThunk(
+    'nacionalidade/fetchNacionalidade',
+    async (id: string, {rejectWithValue}) => {
+      try {
+        const apiService = new ApiService<Nacionalidade>("nacionalidades");
+        const nacionalidade = await apiService.getById(id)
+        if (nacionalidade) {
+          return nacionalidade
+        } else {
+          return rejectWithValue('Failed to fetch alunos');
+        }
+      } catch {
+        return rejectWithValue('Failed to fetch alunos');
+      }
+    }
+);
+
+export const addNacionalidade = createAsyncThunk(
+    'nacionalidade/addNacionalidade',
+    async (data: Partial<Nacionalidade>, {rejectWithValue}) => {
+      try {
+        const apiService = new ApiService<Nacionalidade>("nacionalidades");
+        return await apiService.add(data);
+      } catch {
+        return rejectWithValue('Failed to update aluno');
+      }
+    }
+);
+
+export const updateNacionalidade = createAsyncThunk(
+    'nacionalidade/updateNacionalidade',
+    async ({id, data}: { id: string, data: Partial<Nacionalidade> }, {rejectWithValue}) => {
+      try {
+        const apiService = new ApiService<Nacionalidade>("nacionalidades");
+        await apiService.update(id, data);
+        return {id, ...data};
+      } catch {
+        return rejectWithValue('Failed to update aluno');
+      }
+    }
+);
+
+export const deleteNacionalidade = createAsyncThunk(
+    'nacionalidade/deleteNacionalidade',
+    async (id: string, {rejectWithValue}) => {
+      try {
+        const apiService = new ApiService<Nacionalidade>("alunos");
+        await apiService.delete(id);
+        return id;
+      } catch {
+        return rejectWithValue('Failed to delete aluno');
+      }
+    }
+);
 
 export const nacionalidadeSlice = createSlice({
   name: 'nacionalidade',
@@ -51,6 +108,66 @@ export const nacionalidadeSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
         })
+        // Handle fetchNacionalidade
+        .addCase(fetchNacionalidade.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+          state.nacionalidade = null;
+        })
+        .addCase(fetchNacionalidade.fulfilled, (state, action: PayloadAction<Nacionalidade>) => {
+          state.loading = false;
+          state.nacionalidade = action.payload;
+        })
+        .addCase(fetchNacionalidade.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+          state.nacionalidade = null;
+        })
+        // Handle addNacionalidade
+        .addCase(addNacionalidade.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(addNacionalidade.fulfilled, (state, action) => {
+          state.loading = false;
+          state.nacionalidade = null
+          state.nacionalidades.push(action.payload as Nacionalidade);
+        })
+        .addCase(addNacionalidade.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        })
+        // Handle updateNacionalidade
+        .addCase(updateNacionalidade.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(updateNacionalidade.fulfilled, (state, action) => {
+          state.loading = false;
+          state.nacionalidade = {...state.nacionalidade, ...action.payload} as Nacionalidade;
+          state.nacionalidades = state.nacionalidades.map(nacionalidade =>
+              nacionalidade.id === action.payload.id ?
+                  {...nacionalidade, ...action.payload} :
+                  nacionalidade
+          );
+        })
+        .addCase(updateNacionalidade.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        })
+        // Handle deleteNacionalidade
+        .addCase(deleteNacionalidade.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(deleteNacionalidade.fulfilled, (state, action) => {
+          state.loading = false;
+          state.nacionalidades = state.nacionalidades.filter(nacionalidade => nacionalidade.id !== action.payload);
+        })
+        .addCase(deleteNacionalidade.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        });
   }
 });
 
