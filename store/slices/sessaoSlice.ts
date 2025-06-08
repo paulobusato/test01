@@ -61,7 +61,7 @@ export const updateSessao = createAsyncThunk(
 );
 
 export const deleteSessao = createAsyncThunk(
-    'sessao/updateSessao',
+    'sessao/deleteSessao',
     async (id: string, {rejectWithValue}) => {
       try {
         const apiService = new ApiService<Sessao>("sessoes");

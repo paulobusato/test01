@@ -59,7 +59,7 @@ export const addAtividade = createAsyncThunk(
 );
 
 export const updateAtividade = createAsyncThunk(
-    'atividade/addAtividade',
+    'atividade/updateAtividade',
     async ({id, data}: { id: string, data: Partial<Atividade> }, {rejectWithValue}) => {
       try {
         const apiService = new ApiService<Atividade>("atividades");
