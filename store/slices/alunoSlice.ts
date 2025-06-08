@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {Aluno} from "@/constants/models/Aluno";
-import {AlunoService} from "@/api/services/AlunoService";
+import {ApiService} from "@/api/services/ApiService";
 
 interface AlunoState {
   alunos: Aluno[];
@@ -21,8 +21,8 @@ export const fetchAlunos = createAsyncThunk(
     'aluno/fetchAlunos',
     async (_, {rejectWithValue}) => {
       try {
-        const alunoService = new AlunoService();
-        return await alunoService.getAlunos();
+        const apiService = new ApiService<Aluno>("alunos");
+        return await apiService.getAll();
       } catch {
         return rejectWithValue('Failed to fetch alunos');
       }
@@ -33,8 +33,8 @@ export const fetchAluno = createAsyncThunk(
     'aluno/fetchAluno',
     async (id: string, {rejectWithValue}) => {
       try {
-        const alunoService = new AlunoService();
-        const aluno = await alunoService.getById(id)
+        const apiService = new ApiService<Aluno>("alunos");
+        const aluno = await apiService.getById(id)
         if (aluno) {
           return aluno
         } else {
@@ -50,8 +50,8 @@ export const addAluno = createAsyncThunk(
     'aluno/addAluno',
     async (data: Partial<Aluno>, {rejectWithValue}) => {
       try {
-        const alunoService = new AlunoService();
-        return await alunoService.add(data);
+        const apiService = new ApiService<Aluno>("alunos");
+        return await apiService.add(data);
       } catch {
         return rejectWithValue('Failed to update aluno');
       }
@@ -62,8 +62,8 @@ export const updateAluno = createAsyncThunk(
     'aluno/updateAluno',
     async ({id, data}: { id: string, data: Partial<Aluno> }, {rejectWithValue}) => {
       try {
-        const alunoService = new AlunoService();
-        await alunoService.update(id, data);
+        const apiService = new ApiService<Aluno>("alunos");
+        await apiService.update(id, data);
         return {id, ...data};
       } catch {
         return rejectWithValue('Failed to update aluno');
@@ -75,8 +75,8 @@ export const deleteAluno = createAsyncThunk(
     'aluno/deleteAluno',
     async (id: string, {rejectWithValue}) => {
       try {
-        const alunoService = new AlunoService();
-        await alunoService.delete(id);
+        const apiService = new ApiService<Aluno>("alunos");
+        await apiService.delete(id);
         return id;
       } catch {
         return rejectWithValue('Failed to delete aluno');
