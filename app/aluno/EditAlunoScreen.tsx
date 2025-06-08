@@ -277,7 +277,7 @@ const EditAlunoScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={aluno?.id ? handleSave : handleCreation}
+            onPress={params.id ? handleSave : handleCreation}
         />
       </View>
   );
