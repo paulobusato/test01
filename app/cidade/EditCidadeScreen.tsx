@@ -1,19 +1,93 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {View} from "react-native";
 
-import {FAB, TextInput, useTheme} from "react-native-paper";
+import {ActivityIndicator, FAB, TextInput, useTheme} from "react-native-paper";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
+import {useLocalSearchParams, useRouter} from "expo-router";
+import {addCidade, deleteCidade, fetchCidade, updateCidade} from "@/store/slices/cidadeSlice";
 
 const EditCidadeScreen = () => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const params: { id: string } = useLocalSearchParams();
+  const router = useRouter();
 
-  const [nome, setNome] = useState("Gabriela Angelo");
+  const [form, setForm] = useState({
+    nome: "",
+  });
+
+  const {cidade, loading} = useAppSelector((state) => state.cidade);
+
+  useEffect(() => {
+    dispatch(fetchCidade(params.id));
+  }, [dispatch, params.id]);
+
+  useEffect(() => {
+    if (cidade) {
+      setForm(cidade);
+    }
+  }, [cidade]);
+
+  const handleCreation = async () => {
+    try {
+      await dispatch(addCidade({
+        ...cidade,
+        ...form,
+      }));
+      router.back();
+    } catch {
+      alert("Failed to add aluno. Please try again.");
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      await dispatch(updateCidade({
+        id: params.id,
+        data: {
+          ...cidade,
+          ...form,
+        }
+      }));
+      router.back();
+    } catch {
+      alert("Failed to update aluno. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    // @ts-ignore
+    window["handleDelete"] = async () => {
+      try {
+        await dispatch(deleteCidade(params.id));
+        router.back();
+      } catch {
+        alert("Failed to delete aluno. Please try again.");
+      }
+    };
+
+    return () => {
+      // @ts-ignore
+      delete window["handleDelete"];
+    };
+  }, [dispatch, params.id, router]);
+
+
+  if (loading) {
+    return (
+        <View
+            style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: theme.colors.background}}>
+          <ActivityIndicator animating={true} size="large" color={theme.colors.primary}/>
+        </View>
+    );
+  }
 
   return (
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
           <TextInput
-              value={nome}
-              onChangeText={(text) => setNome(text)}
+              value={form.nome}
+              onChangeText={(text) => setForm({...form, nome: text})}
               label="Nome"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               style={{marginBottom: 16}}
@@ -27,7 +101,7 @@ const EditCidadeScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Pressed")}
+            onPress={params.id ? handleSave : handleCreation}
         />
       </View>
   );

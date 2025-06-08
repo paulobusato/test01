@@ -1,14 +1,15 @@
 import React from "react";
 
 import {Card, IconButton, Text} from "react-native-paper";
-import {Href, useRouter} from "expo-router";
+import {ExternalPathString, Href, useRouter} from "expo-router";
 
 export interface NameCardProps {
+  id: string,
   name: string,
   route: Href;
 }
 
-const NameCard = ({name, route}: NameCardProps) => {
+const NameCard = ({id, name, route}: NameCardProps) => {
   const router = useRouter()
 
   return (
@@ -26,7 +27,10 @@ const NameCard = ({name, route}: NameCardProps) => {
           <IconButton
               icon="pencil"
               size={24}
-              onPress={() => router.push(route)}
+              onPress={() => router.push({
+                pathname: route as ExternalPathString,
+                params: {id: id}
+              })}
           />
         </Card.Content>
       </Card>
