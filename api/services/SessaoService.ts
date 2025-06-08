@@ -10,7 +10,7 @@ export class SessaoService {
       const data = doc.data();
       return {
         id: doc.id,
-        name: data.nome,
+        nome: data.nome,
         queixa: data.queixa,
         encaminhamento: data.encaminhamento,
         atividade: data.atividade,
@@ -29,7 +29,7 @@ export class SessaoService {
     const data = doc.data();
     return data ? {
       id: doc.id,
-      name: data.nome,
+      nome: data.nome,
       queixa: data.queixa,
       encaminhamento: data.encaminhamento,
       atividade: data.atividade,

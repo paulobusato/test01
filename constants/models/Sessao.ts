@@ -1,6 +1,6 @@
 export interface Sessao {
   id: string;
-  name: string;
+  nome: string;
   queixa: string;
   encaminhamento: string;
   atividade: string;

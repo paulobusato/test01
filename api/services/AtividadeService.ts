@@ -10,7 +10,7 @@ export class AtividadeService {
       const data = doc.data();
       return {
         id: doc.id,
-        name: data.nome,
+        nome: data.nome,
         descricao: data.descricao,
         categoria: data.categoria,
         assuntos: data.assuntos,
@@ -28,7 +28,7 @@ export class AtividadeService {
     const data = doc.data();
     return data ? {
       id: doc.id,
-      name: data.nome,
+      nome: data.nome,
       descricao: data.descricao,
       categoria: data.categoria,
       assuntos: data.assuntos,

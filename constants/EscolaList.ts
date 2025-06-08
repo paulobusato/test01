@@ -1,12 +1,12 @@
 import { Escola } from "./models/Escola";
 
 const escolas: Escola[] = [
-  { id: 1, name: "Colégio Estadual" },
-  { id: 2, name: "Colégio Militar" },
-  { id: 3, name: "Colégio Adventista" },
-  { id: 4, name: "Colégio Positivo" },
-  { id: 5, name: "Colégio Marista" },
-  { id: 6, name: "Colégio Santa Maria" },
+  { id: 1, nome: "Colégio Estadual" },
+  { id: 2, nome: "Colégio Militar" },
+  { id: 3, nome: "Colégio Adventista" },
+  { id: 4, nome: "Colégio Positivo" },
+  { id: 5, nome: "Colégio Marista" },
+  { id: 6, nome: "Colégio Santa Maria" },
 ];
 
 export default escolas;

@@ -8,7 +8,7 @@ export class BairroService {
     const snapshot = await this.collection.get();
     return snapshot.docs.map((doc) => {
       const data = doc.data();
-      return { id: doc.id, name: data.nome };
+      return { id: doc.id, nome: data.nome };
     });
   }
 
@@ -17,6 +17,6 @@ export class BairroService {
     if (!doc.exists()) return null;
 
     const data = doc.data();
-    return data ? { id: doc.id, name: data.nome } : null;
+    return data ? { id: doc.id, nome: data.nome } : null;
   }
 }
