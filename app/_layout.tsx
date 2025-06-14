@@ -287,6 +287,29 @@ export default function RootLayout() {
                     ),
                   }}
               />
+              <Stack.Screen
+                  name="nacionalidade/ListNacionalidadeScreen"
+                  options={{
+                    title: "Nacionalidades",
+                    headerTitleAlign: "center",
+                    headerShadowVisible: false,
+                  }}
+              />
+              <Stack.Screen
+                  name="nacionalidade/EditNacionalidadeScreen"
+                  options={{
+                    title: "Nacionalidade",
+                    headerTitleAlign: "center",
+                    headerShadowVisible: false,
+                    headerRight: () => (
+                        <IconButton
+                            icon="trash-can-outline"
+                            size={24}
+                            onPress={() => console.log("Action button pressed")}
+                        />
+                    ),
+                  }}
+              />
             </Stack>
           </PaperProvider>
         </SafeAreaProvider>

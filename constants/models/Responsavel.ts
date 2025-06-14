@@ -2,7 +2,6 @@ export interface Responsavel {
   id: string,
   nome: string,
   nacionalidade: string,
-  cidadeNascimento: string,
   cpf: string,
   telefone: string,
   email: string,
