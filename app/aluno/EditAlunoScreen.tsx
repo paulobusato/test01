@@ -184,7 +184,10 @@ const EditAlunoScreen = () => {
                     value={form.escola}
                     onChangeText={(text) => setForm({...form, escola: text})}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("/escola/ListEscolaScreen")}/>}
+                                          onPress={() => router.push({
+                                            pathname: "/escola/ListEscolaScreen",
+                                            params: {id: params.id}
+                                          })}/>}
                     label="Escola"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -200,7 +203,10 @@ const EditAlunoScreen = () => {
                     value={form.turno}
                     onChangeText={(text) => setForm({...form, turno: text})}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("/turno/ListTurnoScreen")}/>}
+                                          onPress={() => router.push({
+                                            pathname: "/turno/ListTurnoScreen",
+                                            params: {id: params.id}
+                                          })}/>}
                     label="Turno"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
