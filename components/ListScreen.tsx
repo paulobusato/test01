@@ -14,9 +14,10 @@ export interface ListEnderecoScreenProps {
   fabLabel: string,
   data: Logradouro[] | Bairro[] | Cidade[] | Estado[] | Atividade[],
   route: Href,
+  onClick: (nome: string) => void,
 }
 
-const ListScreen = ({fabLabel, data, route}: ListEnderecoScreenProps) => {
+const ListScreen = ({fabLabel, data, route, onClick}: ListEnderecoScreenProps) => {
   const theme = useTheme();
   const router = useRouter();
 
@@ -29,7 +30,7 @@ const ListScreen = ({fabLabel, data, route}: ListEnderecoScreenProps) => {
           <FlatList
               data={data}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={({item}) => <NameCard id={item.id} name={item.nome} route={route}/>}
+              renderItem={({item}) => <NameCard id={item.id} name={item.nome} route={route} onClick={onClick}/>}
           />
         </View>
         <FAB

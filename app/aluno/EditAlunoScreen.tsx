@@ -72,8 +72,6 @@ const EditAlunoScreen = () => {
     }
   };
 
-
-
   useEffect(() => {
     // @ts-ignore
     window["handleDelete"] = async () => {
@@ -134,7 +132,10 @@ const EditAlunoScreen = () => {
                     value={form.responsavel}
                     onChangeText={(text) => setForm({...form, responsavel: text})}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("/responsavel/ListResponsavelScreen")}/>}
+                                          onPress={() => router.push({
+                                            pathname: "/responsavel/ListResponsavelScreen",
+                                            params: {id: params.id}
+                                          })}/>}
                     label="Responsável"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}

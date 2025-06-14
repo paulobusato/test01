@@ -7,16 +7,16 @@ export interface NameCardProps {
   id: string,
   name: string,
   route: Href;
+  onClick: (nome: string) => void;
 }
 
-const NameCard = ({id, name, route}: NameCardProps) => {
+const NameCard = ({id, name, route, onClick}: NameCardProps) => {
   const router = useRouter()
 
   return (
       <Card
           mode="outlined"
-          onPress={() => {
-          }}
+          onPress={() => onClick(name)}
           contentStyle={{padding: 8}}
           style={{marginBottom: 8}}
       >
