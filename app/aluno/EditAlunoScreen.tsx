@@ -220,7 +220,13 @@ const EditAlunoScreen = () => {
                     value={form.logradouro}
                     onChangeText={(text) => setForm({...form, logradouro: text})}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("/logradouro/ListLogradouroScreen")}/>}
+                                          onPress={() => router.push({
+                                            pathname: "/logradouro/ListLogradouroScreen",
+                                            params: {
+                                              entidade: "aluno",
+                                              id: params.id,
+                                            }
+                                          })}/>}
                     label="Logradouro"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -243,7 +249,13 @@ const EditAlunoScreen = () => {
                     value={form.bairro}
                     onChangeText={(text) => setForm({...form, bairro: text})}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("/bairro/ListBairroScreen")}/>}
+                                          onPress={() => router.push({
+                                            pathname: "/bairro/ListBairroScreen",
+                                            params: {
+                                              entidade: "aluno",
+                                              id: params.id,
+                                            }
+                                          })}/>}
                     label="Bairro"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -259,7 +271,13 @@ const EditAlunoScreen = () => {
                     value={form.cidade}
                     onChangeText={(text) => setForm({...form, cidade: text})}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("/cidade/ListCidadeScreen")}/>}
+                                          onPress={() => router.push({
+                                            pathname: "/cidade/ListCidadeScreen",
+                                            params: {
+                                              entidade: "aluno",
+                                              id: params.id,
+                                            }
+                                          })}/>}
                     label="Cidade"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
@@ -268,7 +286,13 @@ const EditAlunoScreen = () => {
                     value={form.estado}
                     onChangeText={(text) => setForm({...form, estado: text})}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push("/estado/ListEstadoScreen")}/>}
+                                          onPress={() => router.push({
+                                            pathname: "/estado/ListEstadoScreen",
+                                            params: {
+                                              entidade: "aluno",
+                                              id: params.id,
+                                            }
+                                          })}/>}
                     label="Estado"
                     right={<TextInput.Icon icon="close-circle-outline"/>}
                     style={{marginBottom: 16}}
