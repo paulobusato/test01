@@ -15,7 +15,8 @@ const EditAlunoScreen = () => {
 
   const {aluno, loading} = useAppSelector((state) => state.aluno);
 
-  const [form, setForm] = useState({
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const emptyAluno = {
     nome: "",
     responsavel: "",
     cpf: "",
@@ -33,7 +34,9 @@ const EditAlunoScreen = () => {
     cep: "",
     cidade: "",
     estado: "",
-  });
+  };
+
+  const [form, setForm] = useState(emptyAluno);
 
   useEffect(() => {
     dispatch(fetchAluno(params.id));
@@ -42,8 +45,10 @@ const EditAlunoScreen = () => {
   useEffect(() => {
     if (aluno) {
       setForm(aluno);
+    } else {
+      setForm(emptyAluno);
     }
-  }, [aluno]);
+  }, [aluno, emptyAluno]);
 
   const handleCreation = async () => {
     try {
