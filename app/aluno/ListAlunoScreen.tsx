@@ -5,7 +5,7 @@ import { FlatList, View } from "react-native";
 
 import { FAB, useTheme } from "react-native-paper";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {fetchAlunos} from "@/store/slices/alunoSlice";
+import {addAluno, fetchAlunos} from "@/store/slices/alunoSlice";
 import {useRouter} from "expo-router";
 
 const ListAlunoScreen = () => {
@@ -40,7 +40,13 @@ const ListAlunoScreen = () => {
           right: 0,
           bottom: 0,
         }}
-        onPress={() => router.push("/aluno/EditAlunoScreen")}
+        onPress={async () => {
+          const aluno = await dispatch(addAluno({})).unwrap();
+          router.push({
+            pathname: "/aluno/EditAlunoScreen",
+            params: { id: aluno.id },
+          });
+        }}
       />
     </View>
   );
