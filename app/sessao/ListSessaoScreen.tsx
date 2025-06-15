@@ -26,7 +26,9 @@ const ListSessaoScreen = () => {
         <View style={{padding: 16}}>
           <SearchInput value={text} onValueChange={setText}/>
           <FlatList
-              data={sessoes}
+              data={sessoes.filter((sessao) =>
+                  sessao.nome.toLowerCase().includes(text.toLowerCase())
+              )}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({item}) => (
                   <SessaoCard

@@ -28,7 +28,9 @@ const ListScreen = ({fabLabel, data, route, onClick}: ListEnderecoScreenProps) =
         <View style={{padding: 16}}>
           <SearchInput value={text} onValueChange={setText}/>
           <FlatList
-              data={data}
+              data={data.filter((data) =>
+                  data.nome.toLowerCase().includes(text.toLowerCase())
+              )}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({item}) => <NameCard id={item.id} name={item.nome} route={route} onClick={onClick}/>}
           />
