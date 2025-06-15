@@ -11,6 +11,8 @@ import nacionalidadeReducer from './slices/nacionalidadeSlice';
 import responsavelReducer from './slices/responsavelSlice';
 import turnoReducer from './slices/turnoSlice';
 import atividadeReducer from './slices/atividadeSlice';
+import statusReducer from './slices/statusSlice';
+import procedimentoReducer from './slices/procedimentoSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +28,8 @@ export const store = configureStore({
     responsavel: responsavelReducer,
     turno: turnoReducer,
     atividade: atividadeReducer,
+    status: statusReducer,
+    procedimento: procedimentoReducer,
   },
 });
 

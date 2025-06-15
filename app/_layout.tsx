@@ -324,6 +324,52 @@ export default function RootLayout() {
                     ),
                   }}
               />
+              <Stack.Screen
+                  name="procedimento/ListProcedimentoScreen"
+                  options={{
+                    title: "Procedimentos",
+                    headerTitleAlign: "center",
+                    headerShadowVisible: false,
+                  }}
+              />
+              <Stack.Screen
+                  name="procedimento/EditProcedimentoScreen"
+                  options={{
+                    title: "Procedimento",
+                    headerTitleAlign: "center",
+                    headerShadowVisible: false,
+                    headerRight: () => (
+                        <IconButton
+                            icon="trash-can-outline"
+                            size={24}
+                            onPress={() => console.log("Action button pressed")}
+                        />
+                    ),
+                  }}
+              />
+              <Stack.Screen
+                  name="status/ListStatusScreen"
+                  options={{
+                    title: "Status",
+                    headerTitleAlign: "center",
+                    headerShadowVisible: false,
+                  }}
+              />
+              <Stack.Screen
+                  name="status/EditStatusScreen"
+                  options={{
+                    title: "Status",
+                    headerTitleAlign: "center",
+                    headerShadowVisible: false,
+                    headerRight: () => (
+                        <IconButton
+                            icon="trash-can-outline"
+                            size={24}
+                            onPress={() => console.log("Action button pressed")}
+                        />
+                    ),
+                  }}
+              />
             </Stack>
           </PaperProvider>
         </SafeAreaProvider>

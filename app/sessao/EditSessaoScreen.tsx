@@ -148,7 +148,16 @@ const EditSessaoScreen = () => {
           <TextInput
               value={form.status}
               onChangeText={(text) => setForm({...form, status: text})}
-              left={<TextInput.Icon icon="magnify"/>}
+              left={<TextInput.Icon icon="magnify"
+                                    onPress={async () => {
+                                      await handleSave()
+                                      router.push({
+                                        pathname: "/status/ListStatusScreen",
+                                        params: {
+                                          id: params.id,
+                                        }
+                                      })
+                                    }}/>}
               label="Status"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               editable={false}
@@ -157,7 +166,16 @@ const EditSessaoScreen = () => {
           <TextInput
               value={form.procedimento}
               onChangeText={(text) => setForm({...form, procedimento: text})}
-              left={<TextInput.Icon icon="magnify"/>}
+              left={<TextInput.Icon icon="magnify"
+                                    onPress={async () => {
+                                      await handleSave()
+                                      router.push({
+                                        pathname: "/procedimento/ListProcedimentoScreen",
+                                        params: {
+                                          id: params.id,
+                                        }
+                                      })
+                                    }}/>}
               label="Procedimento"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               editable={false}

@@ -6,6 +6,6 @@ export interface Sessao {
   atividade: string;
   observacao: string;
   date: string;
-  status: "Agendado" | "Cancelado" | "Concluído" | "Aberto";
+  status: string;
   procedimento: string;
 }
