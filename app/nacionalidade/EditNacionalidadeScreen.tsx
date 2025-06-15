@@ -91,6 +91,7 @@ const EditNacionalidadeScreen = () => {
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
           <TextInput
+              mode={"outlined"}
               value={form.nome}
               onChangeText={(text) => setForm({...form, nome: text})}
               label="Nome"

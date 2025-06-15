@@ -110,6 +110,7 @@ const EditSessaoScreen = () => {
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
           <TextInput
+              mode={"outlined"}
               value={form.nome}
               onChangeText={(text) => setForm({...form, nome: text})}
               left={<TextInput.Icon icon="magnify"
@@ -128,6 +129,7 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.atividade}
               onChangeText={(text) => setForm({...form, atividade: text})}
               left={<TextInput.Icon icon="magnify"
@@ -146,6 +148,7 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.status}
               onChangeText={(text) => setForm({...form, status: text})}
               left={<TextInput.Icon icon="magnify"
@@ -164,6 +167,7 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.procedimento}
               onChangeText={(text) => setForm({...form, procedimento: text})}
               left={<TextInput.Icon icon="magnify"
@@ -182,6 +186,7 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.date}
               onChangeText={(text) => setForm({...form, date: text})}
               label="Data e Hora"
@@ -189,6 +194,7 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.queixa}
               onChangeText={(text) => setForm({...form, queixa: text})}
               label="Queixa"
@@ -198,6 +204,7 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16, minHeight: 100}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.encaminhamento}
               onChangeText={(text) => setForm({...form, encaminhamento: text})}
               label="Encaminhamento"
@@ -207,6 +214,7 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16, minHeight: 100}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.observacao}
               onChangeText={(text) => setForm({...form, observacao: text})}
               label="Observação"

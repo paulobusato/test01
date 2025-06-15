@@ -136,6 +136,7 @@ const EditAlunoScreen = () => {
           {tab === "pessoal" && (
               <>
                 <TextInput
+                    mode={"outlined"}
                     value={form.nome}
                     onChangeText={(text) => setForm({...form, nome: text})}
                     label="Nome"
@@ -143,6 +144,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.responsavel}
                     onChangeText={(text) => setForm({...form, responsavel: text})}
                     left={<TextInput.Icon icon="magnify"
@@ -159,6 +161,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.cpf}
                     onChangeText={(text) => setForm({...form, cpf: text})}
                     label="CPF"
@@ -166,6 +169,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.telefone}
                     onChangeText={(text) => setForm({...form, telefone: text})}
                     label="Telefone"
@@ -173,6 +177,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.email}
                     onChangeText={(text) => setForm({...form, email: text})}
                     label="E-mail"
@@ -180,6 +185,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.dataNascimento}
                     onChangeText={(text) => setForm({...form, dataNascimento: text})}
                     label="Data de Nascimento"
@@ -187,6 +193,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.rg}
                     onChangeText={(text) => setForm({...form, rg: text})}
                     label="RG"
@@ -199,6 +206,7 @@ const EditAlunoScreen = () => {
           {tab === "escolar" && (
               <>
                 <TextInput
+                    mode={"outlined"}
                     value={form.escola}
                     onChangeText={(text) => setForm({...form, escola: text})}
                     left={<TextInput.Icon icon="magnify"
@@ -214,6 +222,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.serie}
                     onChangeText={(text) => setForm({...form, serie: text})}
                     label="Série"
@@ -221,6 +230,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.turno}
                     onChangeText={(text) => setForm({...form, turno: text})}
                     left={<TextInput.Icon icon="magnify"
@@ -241,6 +251,7 @@ const EditAlunoScreen = () => {
           {tab === "endereco" && (
               <>
                 <TextInput
+                    mode={"outlined"}
                     value={form.logradouro}
                     onChangeText={(text) => setForm({...form, logradouro: text})}
                     left={<TextInput.Icon icon="magnify"
@@ -259,6 +270,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.numero}
                     onChangeText={(text) => setForm({...form, numero: text})}
                     label="Número"
@@ -266,6 +278,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.complemento}
                     onChangeText={(text) => setForm({...form, complemento: text})}
                     label="Complemento"
@@ -273,6 +286,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.bairro}
                     onChangeText={(text) => setForm({...form, bairro: text})}
                     left={<TextInput.Icon icon="magnify"
@@ -291,6 +305,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.cep}
                     onChangeText={(text) => setForm({...form, cep: text})}
                     label="CEP"
@@ -298,6 +313,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.cidade}
                     onChangeText={(text) => setForm({...form, cidade: text})}
                     left={<TextInput.Icon icon="magnify"
@@ -316,6 +332,7 @@ const EditAlunoScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
+                    mode={"outlined"}
                     value={form.estado}
                     onChangeText={(text) => setForm({...form, estado: text})}
                     left={<TextInput.Icon icon="magnify"

@@ -4,13 +4,6 @@ import {View} from "react-native";
 import {ActivityIndicator, FAB, TextInput, useTheme} from "react-native-paper";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {useLocalSearchParams, useRouter} from "expo-router";
-import {addLogradouro, deleteLogradouro, fetchLogradouro, updateLogradouro} from "@/store/slices/logradouroSlice";
-import {
-  addProcedimento,
-  deleteProcedimento,
-  fetchProcedimento,
-  updateProcedimento
-} from "@/store/slices/procedimentoSlice";
 import {addStatus, deleteStatus, fetchStatus, updateStatus} from "@/store/slices/statusSlice";
 
 const EditStatusScreen = () => {
@@ -93,6 +86,7 @@ const EditStatusScreen = () => {
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
           <TextInput
+              mode={"outlined"}
               value={form.nome}
               onChangeText={(text) => setForm({...form, nome: text})}
               label="Nome"

@@ -90,6 +90,7 @@ const EditAtividadeScreen = () => {
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
           <TextInput
+              mode={"outlined"}
               value={form.nome}
               onChangeText={(text) => setForm({...form, nome: text})}
               label="Nome"
@@ -97,6 +98,7 @@ const EditAtividadeScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.descricao}
               onChangeText={(text) => setForm({...form, descricao: text})}
               label="Descrição"
@@ -104,6 +106,7 @@ const EditAtividadeScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.categoria}
               onChangeText={(text) => setForm({...form, categoria: text})}
               label="Categoria"
@@ -111,6 +114,7 @@ const EditAtividadeScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.assuntos}
               onChangeText={(text) => setForm({...form, assuntos: text})}
               label="Assunto"
@@ -118,6 +122,7 @@ const EditAtividadeScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
+              mode={"outlined"}
               value={form.areaAplicacao}
               onChangeText={(text) => setForm({...form, areaAplicacao: text})}
               label="Areas de aplicação"
