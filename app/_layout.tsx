@@ -113,18 +113,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="sessao/EditSessaoScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Sessão",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="atividade/ListAtividadeScreen"
