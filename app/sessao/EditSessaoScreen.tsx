@@ -21,7 +21,7 @@ const EditSessaoScreen = () => {
     atividade: "",
     observacao: "",
     date: "",
-    status: "Agendado",
+    status: "",
     procedimento: "",
   });
 
