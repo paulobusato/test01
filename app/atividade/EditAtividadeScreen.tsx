@@ -113,7 +113,7 @@ const EditAtividadeScreen = () => {
           <TextInput
               value={form.assuntos}
               onChangeText={(text) => setForm({...form, assuntos: text})}
-              label="Assuntos"
+              label="Assunto"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               style={{marginBottom: 16}}
           />
@@ -121,20 +121,6 @@ const EditAtividadeScreen = () => {
               value={form.areaAplicacao}
               onChangeText={(text) => setForm({...form, areaAplicacao: text})}
               label="Areas de aplicação"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
-              style={{marginBottom: 16}}
-          />
-          <TextInput
-              value={form.dataCadastro}
-              onChangeText={(text) => setForm({...form, dataCadastro: text})}
-              label="Data de Cadastro"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
-              style={{marginBottom: 16}}
-          />
-          <TextInput
-              value={form.dataAtualizacao}
-              onChangeText={(text) => setForm({...form, dataAtualizacao: text})}
-              label="Data de Atualização"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               style={{marginBottom: 16}}
           />

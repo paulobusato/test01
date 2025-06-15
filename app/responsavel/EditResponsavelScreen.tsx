@@ -122,20 +122,6 @@ const EditResponsavelScreen = () => {
                     style={{marginBottom: 16}}
                 />
                 <TextInput
-                    value={form.nacionalidade}
-                    onChangeText={(text) => setForm({...form, nacionalidade: text})}
-                    left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push({
-                                            pathname: "/nacionalidade/ListNacionalidadeScreen",
-                                            params: {
-                                              id: params.id,
-                                            }
-                                          })}/>}
-                    label="Nacionalidade"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
-                    style={{marginBottom: 16}}
-                />
-                <TextInput
                     value={form.cpf}
                     onChangeText={(text) => setForm({...form, cpf: text})}
                     label="CPF"
