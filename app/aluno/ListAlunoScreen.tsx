@@ -36,7 +36,7 @@ const ListAlunoScreen = () => {
   return (
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
-          <SearchInput value={text} onValueChange={setText}/>
+          <SearchInput value={text} onValueChange={setText} onRightPress={() => setText("")}/>
           <FlatList
               data={alunos.filter((aluno) =>
                   aluno.nome.toLowerCase().includes(text.toLowerCase())
