@@ -5,7 +5,7 @@ import {FlatList, View} from "react-native";
 
 import {FAB, useTheme} from "react-native-paper";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {fetchSessoes} from "@/store/slices/sessaoSlice";
+import {addSessao, fetchSessoes} from "@/store/slices/sessaoSlice";
 import {useRouter} from "expo-router";
 
 const ListSessaoScreen = () => {
@@ -47,7 +47,13 @@ const ListSessaoScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => router.push("/sessao/EditSessaoScreen")}
+            onPress={async () => {
+              const sessao = await dispatch(addSessao({})).unwrap();
+              router.push({
+                pathname: "/sessao/EditSessaoScreen",
+                params: {id: sessao.id},
+              });
+            }}
         />
       </View>
   );

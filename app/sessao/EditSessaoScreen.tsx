@@ -4,7 +4,7 @@ import {View} from "react-native";
 import {ActivityIndicator, FAB, TextInput, useTheme} from "react-native-paper";
 import {useLocalSearchParams, useRouter} from "expo-router";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {fetchSessao} from "@/store/slices/sessaoSlice";
+import {addSessao, deleteSessao, fetchSessao, updateSessao} from "@/store/slices/sessaoSlice";
 
 const EditSessaoScreen = () => {
   const theme = useTheme();
@@ -14,29 +14,88 @@ const EditSessaoScreen = () => {
 
   const {sessao, loading} = useAppSelector((state) => state.sessao);
 
+  const [form, setForm] = useState({
+    nome: "",
+    queixa: "",
+    encaminhamento: "",
+    atividade: "",
+    observacao: "",
+    date: "",
+    status: "Agendado",
+    procedimento: "",
+  });
+
   useEffect(() => {
     dispatch(fetchSessao(params.id));
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   useEffect(() => {
-      setAluno(sessao?.nome || "");
-      setQueixa(sessao?.queixa || "");
-      setEncaminhamento(sessao?.encaminhamento || "");
-      setAtividade(sessao?.atividade || "");
-      setObservacao(sessao?.observacao || "");
-      setData(sessao?.date || "");
-      setStatus(sessao?.status || "");
-      setProcedimento(sessao?.procedimento || "");
+    if (sessao) {
+      setForm(sessao);
+    }
   }, [sessao]);
 
-  const [aluno, setAluno] = useState("");
-  const [queixa, setQueixa] = useState("");
-  const [encaminhamento, setEncaminhamento] = useState("");
-  const [atividade, setAtividade] = useState("");
-  const [observacao, setObservacao] = useState("");
-  const [data, setData] = useState("");
-  const [status, setStatus] = useState("");
-  const [procedimento, setProcedimento] = useState("");
+  const handleCreation = async () => {
+    try {
+      // @ts-ignore
+      await dispatch(addSessao({
+        ...sessao,
+        ...form,
+      }));
+      router.back();
+    } catch {
+      alert("Failed to add aluno. Please try again.");
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+
+      await dispatch(updateSessao({
+        id: params.id,
+        // @ts-ignore
+        data: {
+          ...sessao,
+          ...form,
+        }
+      }));
+    } catch {
+      alert("Failed to update aluno. Please try again.");
+    }
+  };
+
+  const handleSaveAndBack = async () => {
+    try {
+      await dispatch(updateSessao({
+        id: params.id,
+        // @ts-ignore
+        data: {
+          ...sessao,
+          ...form,
+        }
+      }));
+      router.back();
+    } catch {
+      alert("Failed to update aluno. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    // @ts-ignore
+    window["handleDelete"] = async () => {
+      try {
+        await dispatch(deleteSessao(params.id));
+        router.back();
+      } catch {
+        alert("Failed to delete aluno. Please try again.");
+      }
+    };
+
+    return () => {
+      // @ts-ignore
+      delete window["handleDelete"];
+    };
+  }, [dispatch, params.id, router]);
 
   if (loading) {
     return (
@@ -51,26 +110,44 @@ const EditSessaoScreen = () => {
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
           <TextInput
-              value={aluno}
-              onChangeText={(text) => setAluno(text)}
-              left={<TextInput.Icon icon="magnify" onPress={() => router.push("//aluno/ListAlunoScreen")}/>}
+              value={form.nome}
+              onChangeText={(text) => setForm({...form, nome: text})}
+              left={<TextInput.Icon icon="magnify"
+                                    onPress={async () => {
+                                      await handleSave()
+                                      router.push({
+                                        pathname: "/aluno/ListAlunoScreen",
+                                        params: {
+                                          id: params.id,
+                                        }
+                                      })
+                                    }}/>}
               label="Aluno"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               editable={false}
               style={{marginBottom: 16}}
           />
           <TextInput
-              value={atividade}
-              onChangeText={(text) => setAtividade(text)}
-              left={<TextInput.Icon icon="magnify" onPress={() => router.push("/atividade/ListAtividadeScreen")}/>}
+              value={form.atividade}
+              onChangeText={(text) => setForm({...form, atividade: text})}
+              left={<TextInput.Icon icon="magnify"
+                                    onPress={async () => {
+                                      await handleSave()
+                                      router.push({
+                                        pathname: "/atividade/ListAtividadeScreen",
+                                        params: {
+                                          id: params.id,
+                                        }
+                                      })
+                                    }}/>}
               label="Atividade"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               editable={false}
               style={{marginBottom: 16}}
           />
           <TextInput
-              value={status}
-              onChangeText={(text) => setStatus(text)}
+              value={form.status}
+              onChangeText={(text) => setForm({...form, status: text})}
               left={<TextInput.Icon icon="magnify"/>}
               label="Status"
               right={<TextInput.Icon icon="close-circle-outline"/>}
@@ -78,8 +155,8 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
-              value={procedimento}
-              onChangeText={(text) => setProcedimento(text)}
+              value={form.procedimento}
+              onChangeText={(text) => setForm({...form, procedimento: text})}
               left={<TextInput.Icon icon="magnify"/>}
               label="Procedimento"
               right={<TextInput.Icon icon="close-circle-outline"/>}
@@ -87,15 +164,15 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16}}
           />
           <TextInput
-              value={data}
-              onChangeText={(text) => setData(text)}
+              value={form.date}
+              onChangeText={(text) => setForm({...form, date: text})}
               label="Data e Hora"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               style={{marginBottom: 16}}
           />
           <TextInput
-              value={queixa}
-              onChangeText={(text) => setQueixa(text)}
+              value={form.queixa}
+              onChangeText={(text) => setForm({...form, queixa: text})}
               label="Queixa"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               multiline={true}
@@ -103,8 +180,8 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16, minHeight: 100}}
           />
           <TextInput
-              value={encaminhamento}
-              onChangeText={(text) => setEncaminhamento(text)}
+              value={form.encaminhamento}
+              onChangeText={(text) => setForm({...form, encaminhamento: text})}
               label="Encaminhamento"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               multiline={true}
@@ -112,8 +189,8 @@ const EditSessaoScreen = () => {
               style={{marginBottom: 16, minHeight: 100}}
           />
           <TextInput
-              value={observacao}
-              onChangeText={(text) => setObservacao(text)}
+              value={form.observacao}
+              onChangeText={(text) => setForm({...form, observacao: text})}
               label="Observação"
               right={<TextInput.Icon icon="close-circle-outline"/>}
               multiline={true}
@@ -129,7 +206,7 @@ const EditSessaoScreen = () => {
               right: 0,
               bottom: 0,
             }}
-            onPress={() => console.log("Pressed")}
+            onPress={params.id ? handleSaveAndBack : handleCreation}
         />
       </View>
   );

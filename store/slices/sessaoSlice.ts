@@ -47,6 +47,18 @@ export const fetchSessao = createAsyncThunk(
     }
 );
 
+export const addSessao = createAsyncThunk(
+    'sessao/addSessao',
+    async (data: Partial<Sessao>, {rejectWithValue}) => {
+      try {
+        const apiService = new ApiService<Sessao>("sessoes");
+        return await apiService.add(data);
+      } catch {
+        return rejectWithValue('Failed to update aluno');
+      }
+    }
+);
+
 export const updateSessao = createAsyncThunk(
     'sessao/updateSessao',
     async ({id, data}: { id: string, data: Partial<Sessao> }, {rejectWithValue}) => {
@@ -110,6 +122,20 @@ export const sessaoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.sessao = null;
+        })
+        // Handle addSessao
+        .addCase(addSessao.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(addSessao.fulfilled, (state, action) => {
+          state.loading = false;
+          state.sessao = null
+          state.sessoes.push(action.payload as Sessao);
+        })
+        .addCase(addSessao.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle updateSessao
         .addCase(updateSessao.pending, (state) => {
