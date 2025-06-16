@@ -8,11 +8,13 @@ const SessaoCard = ({
                       id,
                       name,
                       date,
+                      time,
                       status,
                     }: {
   id: string;
   name: string;
   date: string;
+  time: string;
   status: string;
 }) => {
   const router = useRouter()
@@ -41,7 +43,10 @@ const SessaoCard = ({
             </Text>
           </View>
           <View className="flex-row items-center justify-between">
-            <Text variant="bodyMedium">{date}</Text>
+            <View className="flex-row items-center">
+              <Text variant="bodyMedium">{date}</Text>
+              <Text variant="bodyMedium" className={"mx-2"}>{time}</Text>
+            </View>
             <Text
                 variant="bodyMedium"
                 style={{

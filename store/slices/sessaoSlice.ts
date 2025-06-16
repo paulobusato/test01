@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Sessao} from "@/constants/models/Sessao";
 import {SessaoService} from "@/api/services/SessaoService";
 import {ApiService} from "@/api/services/ApiService";
+import {Aluno} from "@/constants/models/Aluno";
 
 interface SessaoState {
   sessoes: Sessao[];
@@ -22,8 +23,8 @@ export const fetchSessoes = createAsyncThunk(
     'sessao/fetchSessoes',
     async (_, {rejectWithValue}) => {
       try {
-        const sessaoService = new SessaoService();
-        return await sessaoService.getSessoes();
+        const apiService = new ApiService<Sessao>("sessoes");
+        return await apiService.getAll();
       } catch {
         return rejectWithValue('Failed to fetch alunos');
       }
@@ -34,8 +35,8 @@ export const fetchSessao = createAsyncThunk(
     'sessao/fetchSessao',
     async (id: string, {rejectWithValue}) => {
       try {
-        const sessaoService = new SessaoService();
-        const sessao = await sessaoService.getSessaoById(id);
+        const apiService = new ApiService<Sessao>("sessoes");
+        const sessao = await apiService.getById(id);
         if (sessao) {
           return sessao;
         } else {

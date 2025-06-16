@@ -6,6 +6,7 @@ export interface Sessao {
   atividade: string;
   observacao: string;
   date: string;
+  time: string;
   status: string;
   procedimento: string;
 }

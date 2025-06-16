@@ -36,7 +36,7 @@ export default function Index() {
         data={sessoes.slice(0, 4)}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <SessaoCard id={item.id} name={item.nome} date={item.date} status={item.status} />
+          <SessaoCard id={item.id} name={item.nome} date={item.date} time={item.time} status={item.status} />
         )}
         route={"/sessao/ListSessaoScreen"}
       />

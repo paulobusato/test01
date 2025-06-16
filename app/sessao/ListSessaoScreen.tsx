@@ -21,6 +21,10 @@ const ListSessaoScreen = () => {
     dispatch(fetchSessoes());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log(sessoes);
+  }, [sessoes]);
+
   return (
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
@@ -35,6 +39,7 @@ const ListSessaoScreen = () => {
                       id={item.id}
                       name={item.nome}
                       date={item.date}
+                      time={item.time}
                       status={item.status}
                   />
               )}

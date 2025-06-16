@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {KeyboardAvoidingView, Platform, ScrollView, View} from "react-native";
 
-import {ActivityIndicator, Button, FAB, TextInput, useTheme} from "react-native-paper";
+import {ActivityIndicator, Button, FAB, TextInput, useTheme, Text} from "react-native-paper";
 import {useLocalSearchParams, useRouter} from "expo-router";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {addSessao, deleteSessao, fetchSessao, updateSessao} from "@/store/slices/sessaoSlice";
@@ -27,6 +27,7 @@ const EditSessaoScreen = () => {
     atividade: "",
     observacao: "",
     date: "",
+    time: "",
     status: "",
     procedimento: "",
   });
@@ -115,9 +116,12 @@ const EditSessaoScreen = () => {
       (params: any) => {
         setOpen(false);
         setDate(params.date);
-        console.log(params.date);
+        setForm({
+          ...form,
+          date: `${params.date.getDate().toString().padStart(2, '0')}/${(params.date.getMonth() + 1).toString().padStart(2, '0')}/${params.date.getFullYear()}`
+        })
       },
-      [setOpen, setDate]
+      [setOpen, setDate, form]
   );
 
   /* Hora */
@@ -129,9 +133,13 @@ const EditSessaoScreen = () => {
   const onConfirm = React.useCallback(
       (time: any) => {
         setVisible(false);
-        console.log(time.hours, time.minutes);
+        setForm({
+              ...form,
+              time: `${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}`,
+            },
+        );
       },
-      [setVisible]
+      [setVisible, form]
   );
 
   if (loading) {
@@ -224,9 +232,10 @@ const EditSessaoScreen = () => {
                 editable={false}
                 style={{marginBottom: 16}}
             />
+            <Text variant="labelLarge" style={{marginBottom: 16}}>Agendamento</Text>
             <View style={{marginBottom: 16}}>
               <Button textColor={"#000000"} onPress={() => setOpen(true)} uppercase={false} mode="outlined">
-                {date ? date.toLocaleDateString() : "Pick single date"}
+                {form.date ? form.date : "Escolha uma data"}
               </Button>
               <DatePickerModal
                   locale="pt"
@@ -239,7 +248,7 @@ const EditSessaoScreen = () => {
             </View>
             <View style={{marginBottom: 16}}>
               <Button textColor={"#000000"} onPress={() => setVisible(true)} uppercase={false} mode="outlined">
-                Pick time
+                {form.time ? form.time : "Escolha um horário"}
               </Button>
               <TimePickerModal
                   visible={visible}
@@ -249,14 +258,6 @@ const EditSessaoScreen = () => {
                   minutes={14}
               />
             </View>
-            <TextInput
-                mode={"outlined"}
-                value={form.date}
-                onChangeText={(text) => setForm({...form, date: text})}
-                label="Data e Hora"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
-                style={{marginBottom: 16}}
-            />
             <TextInput
                 mode={"outlined"}
                 value={form.queixa}
