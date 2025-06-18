@@ -36,7 +36,7 @@ const EditCidadeScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar a cidade.");
     }
   };
 
@@ -51,7 +51,7 @@ const EditCidadeScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar a cidade.");
     }
   };
 
@@ -62,7 +62,7 @@ const EditCidadeScreen = () => {
         await dispatch(deleteCidade(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar a cidade.");
       }
     };
 

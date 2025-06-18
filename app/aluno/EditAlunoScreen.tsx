@@ -53,7 +53,7 @@ const EditAlunoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar o aluno.");
     }
   };
 
@@ -67,7 +67,7 @@ const EditAlunoScreen = () => {
         }
       }));
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o aluno.");
     }
   };
 
@@ -82,7 +82,7 @@ const EditAlunoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o aluno.");
     }
   };
 
@@ -93,7 +93,7 @@ const EditAlunoScreen = () => {
         await dispatch(deleteAluno(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar o aluno.");
       }
     };
 

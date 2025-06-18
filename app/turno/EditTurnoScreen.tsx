@@ -36,7 +36,7 @@ const EditTurnoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar o turno.");
     }
   };
 
@@ -51,7 +51,7 @@ const EditTurnoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o turno.");
     }
   };
 
@@ -62,7 +62,7 @@ const EditTurnoScreen = () => {
         await dispatch(deleteTurno(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao atualizar o turno.");
       }
     };
 

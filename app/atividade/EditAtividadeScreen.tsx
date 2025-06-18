@@ -41,7 +41,7 @@ const EditAtividadeScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar a atividade.");
     }
   };
 
@@ -56,7 +56,7 @@ const EditAtividadeScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar a atividade.");
     }
   };
 
@@ -67,7 +67,7 @@ const EditAtividadeScreen = () => {
         await dispatch(deleteAtividade(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar a atividade.");
       }
     };
 

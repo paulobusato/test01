@@ -4,7 +4,7 @@ import {View} from "react-native";
 import {ActivityIndicator, FAB, TextInput, useTheme} from "react-native-paper";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {useLocalSearchParams, useRouter} from "expo-router";
-import {addEstado, deleteEstado, fetchEstado, fetchEstados, updateEstado} from "@/store/slices/estadoSlice";
+import {addEstado, deleteEstado, fetchEstado, updateEstado} from "@/store/slices/estadoSlice";
 
 const EditEstadoScreen = () => {
   const theme = useTheme();
@@ -36,7 +36,7 @@ const EditEstadoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar o estado.");
     }
   };
 
@@ -51,7 +51,7 @@ const EditEstadoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o estado.");
     }
   };
 
@@ -62,7 +62,7 @@ const EditEstadoScreen = () => {
         await dispatch(deleteEstado(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar o estado.");
       }
     };
 

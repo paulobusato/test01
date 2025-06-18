@@ -51,7 +51,7 @@ const EditSessaoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar a sessão.");
     }
   };
 
@@ -67,7 +67,7 @@ const EditSessaoScreen = () => {
         }
       }));
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar a sessão.");
     }
   };
 
@@ -83,7 +83,7 @@ const EditSessaoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar a sessão.");
     }
   };
 
@@ -94,7 +94,7 @@ const EditSessaoScreen = () => {
         await dispatch(deleteSessao(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar a sessão.");
       }
     };
 

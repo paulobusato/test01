@@ -51,7 +51,7 @@ const EditResponsavelScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar o responsável.");
     }
   };
 
@@ -66,7 +66,7 @@ const EditResponsavelScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o responsável.");
     }
   };
 
@@ -77,7 +77,7 @@ const EditResponsavelScreen = () => {
         await dispatch(deleteResponsavel(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar o responsável.");
       }
     };
 

@@ -36,7 +36,7 @@ const EditEscolaScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar a escola.");
     }
   };
 
@@ -51,7 +51,7 @@ const EditEscolaScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar a escola.");
     }
   };
 
@@ -62,7 +62,7 @@ const EditEscolaScreen = () => {
         await dispatch(deleteEscola(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar a escola.");
       }
     };
 

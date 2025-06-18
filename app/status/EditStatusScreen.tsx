@@ -36,7 +36,7 @@ const EditStatusScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar o status.");
     }
   };
 
@@ -51,7 +51,7 @@ const EditStatusScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o status.");
     }
   };
 
@@ -62,7 +62,7 @@ const EditStatusScreen = () => {
         await dispatch(deleteStatus(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar o status.");
       }
     };
 

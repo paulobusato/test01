@@ -41,7 +41,7 @@ const EditProcedimentoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar o procedimento.");
     }
   };
 
@@ -56,7 +56,7 @@ const EditProcedimentoScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o procedimento.");
     }
   };
 
@@ -67,7 +67,7 @@ const EditProcedimentoScreen = () => {
         await dispatch(deleteProcedimento(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar o procedimento.");
       }
     };
 

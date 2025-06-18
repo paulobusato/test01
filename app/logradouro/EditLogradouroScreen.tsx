@@ -36,7 +36,7 @@ const EditLogradouroScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar o logradouro.");
     }
   };
 
@@ -51,7 +51,7 @@ const EditLogradouroScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar o logradouro.");
     }
   };
 
@@ -62,7 +62,7 @@ const EditLogradouroScreen = () => {
         await dispatch(deleteLogradouro(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar o logradouro.");
       }
     };
 

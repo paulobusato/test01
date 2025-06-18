@@ -41,7 +41,7 @@ const EditNacionalidadeScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to add aluno. Please try again.");
+      alert("Ocorreu um erro ao adicionar a nacionalidade.");
     }
   };
 
@@ -56,7 +56,7 @@ const EditNacionalidadeScreen = () => {
       }));
       router.back();
     } catch {
-      alert("Failed to update aluno. Please try again.");
+      alert("Ocorreu um erro ao atualizar a nacionalidade.");
     }
   };
 
@@ -67,7 +67,7 @@ const EditNacionalidadeScreen = () => {
         await dispatch(deleteNacionalidade(params.id));
         router.back();
       } catch {
-        alert("Failed to delete aluno. Please try again.");
+        alert("Ocorreu um erro ao deletar a nacionalidade.");
       }
     };
 
