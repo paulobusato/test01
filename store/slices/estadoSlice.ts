@@ -25,7 +25,7 @@ export const fetchEstados = createAsyncThunk(
         const estadoService = new EstadoService();
         return await estadoService.getEstados();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar estado');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchEstado = createAsyncThunk(
         if (estado) {
           return estado
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar estado');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar estado');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addEstado = createAsyncThunk(
         const apiService = new ApiService<Estado>("estados");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar estado');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateEstado = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar estado');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteEstado = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar estado');
       }
     }
 );

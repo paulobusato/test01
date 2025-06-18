@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {Turno} from "@/constants/models/Turno";
-import {TurnoService} from "@/api/services/TurnoService";
 import {ApiService} from "@/api/services/ApiService";
 import {Status} from "@/constants/models/Status";
 import {StatusService} from "@/api/services/StatusService";
@@ -27,7 +26,7 @@ export const fetchStatuses = createAsyncThunk(
         const statusService = new StatusService();
         return await statusService.getStatuses();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar status');
       }
     }
 );
@@ -41,10 +40,10 @@ export const fetchStatus = createAsyncThunk(
         if (status) {
           return status
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar status');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar status');
       }
     }
 );
@@ -56,7 +55,7 @@ export const addStatus = createAsyncThunk(
         const apiService = new ApiService<Status>("statuses");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar status');
       }
     }
 );
@@ -69,7 +68,7 @@ export const updateStatus = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar status');
       }
     }
 );
@@ -82,7 +81,7 @@ export const deleteStatus = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar status');
       }
     }
 );

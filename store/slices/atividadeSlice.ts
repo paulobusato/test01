@@ -24,7 +24,7 @@ export const fetchAtividades = createAsyncThunk(
         const atividadeService = new AtividadeService();
         return await atividadeService.getAtividades();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar atividade');
       }
     }
 );
@@ -38,10 +38,10 @@ export const fetchAtividade = createAsyncThunk(
         if (atividade) {
           return atividade
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar atividade');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar atividade');
       }
     }
 );
@@ -53,7 +53,7 @@ export const addAtividade = createAsyncThunk(
         const apiService = new ApiService<Atividade>("atividades");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar atividade');
       }
     }
 );
@@ -66,7 +66,7 @@ export const updateAtividade = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar atividade');
       }
     }
 );
@@ -79,7 +79,7 @@ export const deleteAtividade = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar atividade');
       }
     }
 );

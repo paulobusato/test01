@@ -1,10 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {Turno} from "@/constants/models/Turno";
-import {TurnoService} from "@/api/services/TurnoService";
 import {ApiService} from "@/api/services/ApiService";
-import {Status} from "@/constants/models/Status";
-import {StatusService} from "@/api/services/StatusService";
 import {Procedimento} from "@/constants/models/Procedimento";
 import { ProcedimentoService } from '@/api/services/ProcedimentoService';
 
@@ -29,7 +26,7 @@ export const fetchProcedimentos = createAsyncThunk(
         const procedimentoService = new ProcedimentoService();
         return await procedimentoService.getProcedimentos();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar procedimento');
       }
     }
 );
@@ -43,10 +40,10 @@ export const fetchProcedimento = createAsyncThunk(
         if (procedimento) {
           return procedimento
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar procedimento');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar procedimento');
       }
     }
 );
@@ -58,7 +55,7 @@ export const addProcedimento = createAsyncThunk(
         const apiService = new ApiService<Procedimento>("procedimentos");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar procedimento');
       }
     }
 );
@@ -71,7 +68,7 @@ export const updateProcedimento = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar procedimento');
       }
     }
 );
@@ -84,7 +81,7 @@ export const deleteProcedimento = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar procedimento');
       }
     }
 );

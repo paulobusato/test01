@@ -25,7 +25,7 @@ export const fetchTurnos = createAsyncThunk(
         const turnoService = new TurnoService();
         return await turnoService.getTurnos();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar turno');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchTurno = createAsyncThunk(
         if (turno) {
           return turno
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar turno');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar turno');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addTurno = createAsyncThunk(
         const apiService = new ApiService<Turno>("turnos");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar turno');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateTurno = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar turno');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteTurno = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar status');
       }
     }
 );

@@ -1,9 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {Sessao} from "@/constants/models/Sessao";
-import {SessaoService} from "@/api/services/SessaoService";
 import {ApiService} from "@/api/services/ApiService";
-import {Aluno} from "@/constants/models/Aluno";
 
 interface SessaoState {
   sessoes: Sessao[];
@@ -26,7 +24,7 @@ export const fetchSessoes = createAsyncThunk(
         const apiService = new ApiService<Sessao>("sessoes");
         return await apiService.getAll();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar sessao');
       }
     }
 );
@@ -40,10 +38,10 @@ export const fetchSessao = createAsyncThunk(
         if (sessao) {
           return sessao;
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar sessao');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar sessao');
       }
     }
 );
@@ -55,7 +53,7 @@ export const addSessao = createAsyncThunk(
         const apiService = new ApiService<Sessao>("sessoes");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar sessao');
       }
     }
 );
@@ -68,7 +66,7 @@ export const updateSessao = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar sessao');
       }
     }
 );
@@ -81,7 +79,7 @@ export const deleteSessao = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar sessao');
       }
     }
 );

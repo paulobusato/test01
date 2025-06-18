@@ -25,7 +25,7 @@ export const fetchBairros = createAsyncThunk(
         const bairroService = new BairroService();
         return await bairroService.getBairros();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar bairro');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchBairro = createAsyncThunk(
         if (bairro) {
           return bairro
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar bairro');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar bairro');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addBairro = createAsyncThunk(
         const apiService = new ApiService<Bairro>("bairros");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar bairro');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateBairro = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar bairro');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteBairro = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar bairro');
       }
     }
 );

@@ -25,7 +25,7 @@ export const fetchResponsaveis = createAsyncThunk(
         const responsavelService = new ResponsavelService();
         return await responsavelService.getResponsaveis();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar responsavel');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchResponsavel = createAsyncThunk(
         if (responsavel) {
           return responsavel
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar responsavel');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar responsavel');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addResponsavel = createAsyncThunk(
         const apiService = new ApiService<Responsavel>("responsaveis");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar responsavel');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateResponsavel = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar responsavel');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteResponsavel = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar responsavel');
       }
     }
 );

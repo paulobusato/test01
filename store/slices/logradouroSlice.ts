@@ -25,7 +25,7 @@ export const fetchLogradouros = createAsyncThunk(
         const logradouroService = new LogradouroService();
         return await logradouroService.getLogradouros();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar logradouro');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchLogradouro = createAsyncThunk(
         if (logradouro) {
           return logradouro
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar logradouro');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar logradouro');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addLogradouro = createAsyncThunk(
         const apiService = new ApiService<Logradouro>("logradouros");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar logradouro');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateLogradouro = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar logradouro');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteLogradouro = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar logradouro');
       }
     }
 );

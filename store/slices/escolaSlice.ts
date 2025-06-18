@@ -25,7 +25,7 @@ export const fetchEscolas = createAsyncThunk(
         const escolaService = new EscolaService();
         return await escolaService.getEscolas();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar escola');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchEscola = createAsyncThunk(
         if (escola) {
           return escola
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar escola');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar escola');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addEscola = createAsyncThunk(
         const apiService = new ApiService<Escola>("escolas");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar escola');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateEscola = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar escola');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteEscola = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar escola');
       }
     }
 );

@@ -25,7 +25,7 @@ export const fetchCidades = createAsyncThunk(
         const cidadeService = new CidadeService();
         return await cidadeService.getCidades();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar cidade');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchCidade = createAsyncThunk(
         if (aluno) {
           return aluno
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar cidade');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar cidade');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addCidade = createAsyncThunk(
         const apiService = new ApiService<Cidade>("cidades");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar cidade');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateCidade = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar cidade');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteCidade = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar cidade');
       }
     }
 );

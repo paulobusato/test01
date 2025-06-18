@@ -25,7 +25,7 @@ export const fetchNacionalidades = createAsyncThunk(
         const nacionalidadeService = new NacionalidadeService();
         return await nacionalidadeService.getNacionalidades();
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar nacionalidade');
       }
     }
 );
@@ -39,10 +39,10 @@ export const fetchNacionalidade = createAsyncThunk(
         if (nacionalidade) {
           return nacionalidade
         } else {
-          return rejectWithValue('Failed to fetch alunos');
+          return rejectWithValue('Falha ao buscar nacionalidade');
         }
       } catch {
-        return rejectWithValue('Failed to fetch alunos');
+        return rejectWithValue('Falha ao buscar nacionalidade');
       }
     }
 );
@@ -54,7 +54,7 @@ export const addNacionalidade = createAsyncThunk(
         const apiService = new ApiService<Nacionalidade>("nacionalidades");
         return await apiService.add(data);
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao adicionar nacionalidade');
       }
     }
 );
@@ -67,7 +67,7 @@ export const updateNacionalidade = createAsyncThunk(
         await apiService.update(id, data);
         return {id, ...data};
       } catch {
-        return rejectWithValue('Failed to update aluno');
+        return rejectWithValue('Falha ao atualizar nacionalidade');
       }
     }
 );
@@ -80,7 +80,7 @@ export const deleteNacionalidade = createAsyncThunk(
         await apiService.delete(id);
         return id;
       } catch {
-        return rejectWithValue('Failed to delete aluno');
+        return rejectWithValue('Falha ao deletar nacionalidade');
       }
     }
 );
