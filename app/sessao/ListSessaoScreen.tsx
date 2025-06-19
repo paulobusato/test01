@@ -21,10 +21,6 @@ const ListSessaoScreen = () => {
     dispatch(fetchSessoes());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(sessoes);
-  }, [sessoes]);
-
   return (
       <View style={{flex: 1, backgroundColor: theme.colors.background}}>
         <View style={{padding: 16}}>
