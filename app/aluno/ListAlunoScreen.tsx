@@ -38,8 +38,10 @@ const ListAlunoScreen = () => {
         <View style={{padding: 16}}>
           <SearchInput value={text} onValueChange={setText} onRightPress={() => setText("")}/>
           <FlatList
-              data={alunos.filter((aluno) =>
-                  aluno.nome.toLowerCase().includes(text.toLowerCase())
+              data={alunos.filter((aluno) => {
+                    if (!aluno.nome) return true;
+                    return aluno.nome.toLowerCase().includes(text.toLowerCase());
+                  }
               )}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({item}) => <NameCard id={item.id} name={item.nome} route={"/aluno/EditAlunoScreen"}
