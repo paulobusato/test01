@@ -160,6 +160,7 @@ const EditSessaoScreen = () => {
                 mode={"outlined"}
                 value={form.nome}
                 onChangeText={(text) => setForm({...form, nome: text})}
+                readOnly={true}
                 left={<TextInput.Icon icon="magnify"
                                       onPress={async () => {
                                         await handleSave()
@@ -179,6 +180,7 @@ const EditSessaoScreen = () => {
                 mode={"outlined"}
                 value={form.atividade}
                 onChangeText={(text) => setForm({...form, atividade: text})}
+                readOnly={true}
                 left={<TextInput.Icon icon="magnify"
                                       onPress={async () => {
                                         await handleSave()
@@ -198,6 +200,7 @@ const EditSessaoScreen = () => {
                 mode={"outlined"}
                 value={form.status}
                 onChangeText={(text) => setForm({...form, status: text})}
+                readOnly={true}
                 left={<TextInput.Icon icon="magnify"
                                       onPress={async () => {
                                         await handleSave()
@@ -217,6 +220,7 @@ const EditSessaoScreen = () => {
                 mode={"outlined"}
                 value={form.procedimento}
                 onChangeText={(text) => setForm({...form, procedimento: text})}
+                readOnly={true}
                 left={<TextInput.Icon icon="magnify"
                                       onPress={async () => {
                                         await handleSave()

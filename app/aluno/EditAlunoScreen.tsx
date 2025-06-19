@@ -147,6 +147,7 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.responsavel}
                     onChangeText={(text) => setForm({...form, responsavel: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => {
                                             await handleSave()
@@ -209,6 +210,7 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.escola}
                     onChangeText={(text) => setForm({...form, escola: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => {
                                             await handleSave()
@@ -233,6 +235,7 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.turno}
                     onChangeText={(text) => setForm({...form, turno: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => {
                                             await handleSave()
@@ -254,6 +257,7 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.logradouro}
                     onChangeText={(text) => setForm({...form, logradouro: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => {
                                             await handleSave()
@@ -289,6 +293,7 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.bairro}
                     onChangeText={(text) => setForm({...form, bairro: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => {
                                             await handleSave()
@@ -316,6 +321,7 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.cidade}
                     onChangeText={(text) => setForm({...form, cidade: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => {
                                             await handleSave()
@@ -335,6 +341,7 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.estado}
                     onChangeText={(text) => setForm({...form, estado: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => {
                                             await handleSave()

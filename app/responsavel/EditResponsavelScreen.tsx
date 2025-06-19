@@ -171,6 +171,7 @@ const EditResponsavelScreen = () => {
                     mode={"outlined"}
                     value={form.logradouro}
                     onChangeText={(text) => setForm({...form, logradouro: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push({
                                             pathname: "/logradouro/ListLogradouroScreen",
@@ -203,6 +204,7 @@ const EditResponsavelScreen = () => {
                     mode={"outlined"}
                     value={form.bairro}
                     onChangeText={(text) => setForm({...form, bairro: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push({
                                             pathname: "/bairro/ListBairroScreen",
@@ -227,6 +229,7 @@ const EditResponsavelScreen = () => {
                     mode={"outlined"}
                     value={form.cidade}
                     onChangeText={(text) => setForm({...form, cidade: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push({
                                             pathname: "/cidade/ListCidadeScreen",
@@ -243,6 +246,7 @@ const EditResponsavelScreen = () => {
                     mode={"outlined"}
                     value={form.estado}
                     onChangeText={(text) => setForm({...form, estado: text})}
+                    readOnly={true}
                     left={<TextInput.Icon icon="magnify"
                                           onPress={() => router.push({
                                             pathname: "/estado/ListEstadoScreen",
