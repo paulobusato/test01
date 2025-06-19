@@ -5,6 +5,12 @@ import {useLocalSearchParams, useRouter} from "expo-router";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {addAluno, deleteAluno, fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
 import {clearResponsavel} from "@/store/slices/responsavelSlice";
+import {clearEscola} from "@/store/slices/escolaSlice";
+import {clearTurno} from "@/store/slices/turnoSlice";
+import {clearLogradouro} from "@/store/slices/logradouroSlice";
+import {clearBairro} from "@/store/slices/bairroSlice";
+import {clearCidade} from "@/store/slices/cidadeSlice";
+import {clearEstado} from "@/store/slices/estadoSlice";
 
 const EditAlunoScreen = () => {
   const theme = useTheme();
@@ -16,6 +22,14 @@ const EditAlunoScreen = () => {
 
   const {aluno, loading: loadingAluno} = useAppSelector((state) => state.aluno);
   const {responsavel, loading: loadingResponsavel} = useAppSelector((state) => state.responsavel);
+
+  const {escola, loading: loadingEscola} = useAppSelector((state) => state.escola);
+  const {turno, loading: loadingTurno} = useAppSelector((state) => state.turno);
+
+  const {logradouro, loading: loadingLogradouro} = useAppSelector((state) => state.logradouro);
+  const {bairro, loading: loadingBairro} = useAppSelector((state) => state.bairro);
+  const {cidade, loading: loadingCidade} = useAppSelector((state) => state.cidade);
+  const {estado, loading: loadingEstado} = useAppSelector((state) => state.estado);
 
   const [form, setForm] = useState({
     nome: "",
@@ -46,6 +60,66 @@ const EditAlunoScreen = () => {
       dispatch(clearResponsavel())
     }
   }, [dispatch, form, responsavel]);
+
+  useEffect(() => {
+    if (escola) {
+      setForm({
+        ...form,
+        escola: escola.nome,
+      });
+      dispatch(clearEscola())
+    }
+  }, [dispatch, form, escola]);
+
+  useEffect(() => {
+    if (turno) {
+      setForm({
+        ...form,
+        turno: turno.nome,
+      });
+      dispatch(clearTurno())
+    }
+  }, [dispatch, form, turno]);
+
+  useEffect(() => {
+    if (logradouro) {
+      setForm({
+        ...form,
+        logradouro: logradouro.nome,
+      });
+      dispatch(clearLogradouro())
+    }
+  }, [dispatch, form, logradouro]);
+
+  useEffect(() => {
+    if (bairro) {
+      setForm({
+        ...form,
+        bairro: bairro.nome,
+      });
+      dispatch(clearBairro())
+    }
+  }, [dispatch, form, bairro]);
+
+  useEffect(() => {
+    if (cidade) {
+      setForm({
+        ...form,
+        cidade: cidade.nome,
+      });
+      dispatch(clearCidade())
+    }
+  }, [dispatch, form, cidade]);
+
+  useEffect(() => {
+    if (estado) {
+      setForm({
+        ...form,
+        estado: estado.nome,
+      });
+      dispatch(clearEstado())
+    }
+  }, [dispatch, form, estado]);
 
   useEffect(() => {
     dispatch(fetchAluno(params.id));
@@ -116,7 +190,7 @@ const EditAlunoScreen = () => {
   }, [dispatch, params.id, router]);
 
 
-  if (loadingAluno || loadingResponsavel) {
+  if (loadingAluno || loadingResponsavel || loadingEscola || loadingTurno || loadingLogradouro || loadingBairro || loadingCidade || loadingEstado) {
     return (
         <View
             style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: theme.colors.background}}>
@@ -152,7 +226,8 @@ const EditAlunoScreen = () => {
                     value={form.nome}
                     onChangeText={(text) => setForm({...form, nome: text})}
                     label="Nome"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, nome: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, nome: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -163,7 +238,8 @@ const EditAlunoScreen = () => {
                     left={<TextInput.Icon icon="magnify"
                                           onPress={async () => router.push("/responsavel/ListResponsavelScreen")}/>}
                     label="Responsável"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, responsavel: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, responsavel: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -172,7 +248,8 @@ const EditAlunoScreen = () => {
                     keyboardType={"numeric"}
                     onChangeText={(text) => setForm({...form, cpf: text})}
                     label="CPF"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cpf: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, cpf: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -181,7 +258,8 @@ const EditAlunoScreen = () => {
                     keyboardType={"numeric"}
                     onChangeText={(text) => setForm({...form, telefone: text})}
                     label="Telefone"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, telefone: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, telefone: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -190,7 +268,8 @@ const EditAlunoScreen = () => {
                     keyboardType={"email-address"}
                     onChangeText={(text) => setForm({...form, email: text})}
                     label="E-mail"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, email: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, email: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -198,7 +277,8 @@ const EditAlunoScreen = () => {
                     value={form.dataNascimento}
                     onChangeText={(text) => setForm({...form, dataNascimento: text})}
                     label="Data de Nascimento"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, dataNascimento: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, dataNascimento: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -220,15 +300,10 @@ const EditAlunoScreen = () => {
                     onChangeText={(text) => setForm({...form, escola: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={async () => {
-                                            await handleSave()
-                                            router.push({
-                                              pathname: "/escola/ListEscolaScreen",
-                                              params: {id: params.id}
-                                            });
-                                          }}/>}
+                                          onPress={async () => router.push("/escola/ListEscolaScreen")}/>}
                     label="Escola"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, escola: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, escola: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -236,7 +311,8 @@ const EditAlunoScreen = () => {
                     value={form.serie}
                     onChangeText={(text) => setForm({...form, serie: text})}
                     label="Série"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, serie: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, serie: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -245,15 +321,10 @@ const EditAlunoScreen = () => {
                     onChangeText={(text) => setForm({...form, turno: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={async () => {
-                                            await handleSave()
-                                            router.push({
-                                              pathname: "/turno/ListTurnoScreen",
-                                              params: {id: params.id}
-                                            })
-                                          }}/>}
+                                          onPress={async () => router.push("/turno/ListTurnoScreen")}/>}
                     label="Turno"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, turno: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, turno: ""})}/>}
                     style={{marginBottom: 16}}
                 />
               </>
@@ -267,18 +338,10 @@ const EditAlunoScreen = () => {
                     onChangeText={(text) => setForm({...form, logradouro: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={async () => {
-                                            await handleSave()
-                                            router.push({
-                                              pathname: "/logradouro/ListLogradouroScreen",
-                                              params: {
-                                                entidade: "aluno",
-                                                id: params.id,
-                                              }
-                                            })
-                                          }}/>}
+                                          onPress={async () => router.push("/logradouro/ListLogradouroScreen")}/>}
                     label="Logradouro"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, logradouro: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, logradouro: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -286,7 +349,8 @@ const EditAlunoScreen = () => {
                     value={form.numero}
                     onChangeText={(text) => setForm({...form, numero: text})}
                     label="Número"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, numero: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, numero: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -294,7 +358,8 @@ const EditAlunoScreen = () => {
                     value={form.complemento}
                     onChangeText={(text) => setForm({...form, complemento: text})}
                     label="Complemento"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, complemento: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, complemento: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -303,18 +368,10 @@ const EditAlunoScreen = () => {
                     onChangeText={(text) => setForm({...form, bairro: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={async () => {
-                                            await handleSave()
-                                            router.push({
-                                              pathname: "/bairro/ListBairroScreen",
-                                              params: {
-                                                entidade: "aluno",
-                                                id: params.id,
-                                              }
-                                            })
-                                          }}/>}
+                                          onPress={async () => router.push("/bairro/ListBairroScreen")}/>}
                     label="Bairro"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, bairro: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, bairro: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -323,7 +380,8 @@ const EditAlunoScreen = () => {
                     keyboardType={"numeric"}
                     onChangeText={(text) => setForm({...form, cep: text})}
                     label="CEP"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cep: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, cep: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -332,18 +390,10 @@ const EditAlunoScreen = () => {
                     onChangeText={(text) => setForm({...form, cidade: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={async () => {
-                                            await handleSave()
-                                            router.push({
-                                              pathname: "/cidade/ListCidadeScreen",
-                                              params: {
-                                                entidade: "aluno",
-                                                id: params.id,
-                                              }
-                                            })
-                                          }}/>}
+                                          onPress={async () => router.push("/cidade/ListCidadeScreen")}/>}
                     label="Cidade"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cidade: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, cidade: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -352,18 +402,10 @@ const EditAlunoScreen = () => {
                     onChangeText={(text) => setForm({...form, estado: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={async () => {
-                                            await handleSave()
-                                            router.push({
-                                              pathname: "/estado/ListEstadoScreen",
-                                              params: {
-                                                entidade: "aluno",
-                                                id: params.id,
-                                              }
-                                            })
-                                          }}/>}
+                                          onPress={async () => router.push("/estado/ListEstadoScreen")}/>}
                     label="Estado"
-                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, estado: ""})}/>}
+                    right={<TextInput.Icon icon="close-circle-outline"
+                                           onPress={(text) => setForm({...form, estado: ""})}/>}
                     style={{marginBottom: 16}}
                 />
               </>

@@ -8,6 +8,10 @@ import {addSessao, deleteSessao, fetchSessao, updateSessao} from "@/store/slices
 
 import {DatePickerModal, pt, en, registerTranslation, TimePickerModal} from 'react-native-paper-dates'
 import {CalendarDate} from "react-native-paper-dates/lib/typescript/Date/Calendar";
+import {clearAluno} from "@/store/slices/alunoSlice";
+import {clearAtividade} from "@/store/slices/atividadeSlice";
+import {clearStatus} from "@/store/slices/statusSlice";
+import {clearProcedimento} from "@/store/slices/procedimentoSlice";
 
 registerTranslation('en', en)
 registerTranslation('pt-BR', pt)
@@ -18,7 +22,12 @@ const EditSessaoScreen = () => {
   const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
-  const {sessao, loading} = useAppSelector((state) => state.sessao);
+  const {sessao, loading: loadingSessao} = useAppSelector((state) => state.sessao);
+
+  const {aluno, loading: loadingAluno} = useAppSelector((state) => state.aluno);
+  const {atividade, loading: loadingAtividade} = useAppSelector((state) => state.atividade);
+  const {status, loading: loadingStatus} = useAppSelector((state) => state.status);
+  const {procedimento, loading: loadingProcedimento} = useAppSelector((state) => state.procedimento);
 
   const [form, setForm] = useState({
     nome: "",
@@ -31,6 +40,46 @@ const EditSessaoScreen = () => {
     status: "",
     procedimento: "",
   });
+
+  useEffect(() => {
+    if (aluno) {
+      setForm({
+        ...form,
+        nome: aluno.nome,
+      });
+      dispatch(clearAluno())
+    }
+  }, [dispatch, form, aluno]);
+
+  useEffect(() => {
+    if (atividade) {
+      setForm({
+        ...form,
+        atividade: atividade.nome,
+      });
+      dispatch(clearAtividade())
+    }
+  }, [dispatch, form, atividade]);
+
+  useEffect(() => {
+    if (status) {
+      setForm({
+        ...form,
+        status: status.nome,
+      });
+      dispatch(clearStatus())
+    }
+  }, [dispatch, form, status]);
+
+  useEffect(() => {
+    if (procedimento) {
+      setForm({
+        ...form,
+        procedimento: procedimento.nome,
+      });
+      dispatch(clearProcedimento())
+    }
+  }, [dispatch, form, procedimento]);
 
   useEffect(() => {
     dispatch(fetchSessao(params.id));
@@ -142,7 +191,7 @@ const EditSessaoScreen = () => {
       [setVisible, form]
   );
 
-  if (loading) {
+  if (loadingSessao || loadingAluno || loadingAtividade || loadingStatus || loadingProcedimento) {
     return (
         <View
             style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: theme.colors.background}}>
@@ -162,15 +211,7 @@ const EditSessaoScreen = () => {
                 onChangeText={(text) => setForm({...form, nome: text})}
                 readOnly={true}
                 left={<TextInput.Icon icon="magnify"
-                                      onPress={async () => {
-                                        await handleSave()
-                                        router.push({
-                                          pathname: "/aluno/ListAlunoScreen",
-                                          params: {
-                                            id: params.id,
-                                          }
-                                        })
-                                      }}/>}
+                                      onPress={async () => router.push("/aluno/ListAlunoScreen")}/>}
                 label="Aluno"
                 right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, nome: ""})}/>}
                 editable={false}
@@ -182,15 +223,7 @@ const EditSessaoScreen = () => {
                 onChangeText={(text) => setForm({...form, atividade: text})}
                 readOnly={true}
                 left={<TextInput.Icon icon="magnify"
-                                      onPress={async () => {
-                                        await handleSave()
-                                        router.push({
-                                          pathname: "/atividade/ListAtividadeScreen",
-                                          params: {
-                                            id: params.id,
-                                          }
-                                        })
-                                      }}/>}
+                                      onPress={async () => router.push("/atividade/ListAtividadeScreen")}/>}
                 label="Atividade"
                 right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, atividade: ""})}/>}
                 editable={false}
@@ -202,15 +235,7 @@ const EditSessaoScreen = () => {
                 onChangeText={(text) => setForm({...form, status: text})}
                 readOnly={true}
                 left={<TextInput.Icon icon="magnify"
-                                      onPress={async () => {
-                                        await handleSave()
-                                        router.push({
-                                          pathname: "/status/ListStatusScreen",
-                                          params: {
-                                            id: params.id,
-                                          }
-                                        })
-                                      }}/>}
+                                      onPress={async () => router.push("/status/ListStatusScreen")}/>}
                 label="Status"
                 right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, status: ""})}/>}
                 editable={false}
@@ -222,15 +247,7 @@ const EditSessaoScreen = () => {
                 onChangeText={(text) => setForm({...form, procedimento: text})}
                 readOnly={true}
                 left={<TextInput.Icon icon="magnify"
-                                      onPress={async () => {
-                                        await handleSave()
-                                        router.push({
-                                          pathname: "/procedimento/ListProcedimentoScreen",
-                                          params: {
-                                            id: params.id,
-                                          }
-                                        })
-                                      }}/>}
+                                      onPress={async () => router.push("/procedimento/ListProcedimentoScreen")}/>}
                 label="Procedimento"
                 right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, procedimento: ""})}/>}
                 editable={false}

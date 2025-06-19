@@ -5,6 +5,10 @@ import {ActivityIndicator, FAB, SegmentedButtons, TextInput, useTheme} from "rea
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {useLocalSearchParams, useRouter} from "expo-router";
 import {addResponsavel, deleteResponsavel, fetchResponsavel, updateResponsavel} from "@/store/slices/responsavelSlice";
+import {clearLogradouro} from "@/store/slices/logradouroSlice";
+import {clearBairro} from "@/store/slices/bairroSlice";
+import {clearCidade} from "@/store/slices/cidadeSlice";
+import {clearEstado} from "@/store/slices/estadoSlice";
 
 const EditResponsavelScreen = () => {
   const theme = useTheme();
@@ -14,7 +18,12 @@ const EditResponsavelScreen = () => {
 
   const [tab, setTab] = useState("pessoal");
 
-  const {responsavel, loading} = useAppSelector((state) => state.responsavel);
+  const {responsavel, loading: loadingResponsavel} = useAppSelector((state) => state.responsavel);
+
+  const {logradouro, loading: loadingLogradouro} = useAppSelector((state) => state.logradouro);
+  const {bairro, loading: loadingBairro} = useAppSelector((state) => state.bairro);
+  const {cidade, loading: loadingCidade} = useAppSelector((state) => state.cidade);
+  const {estado, loading: loadingEstado} = useAppSelector((state) => state.estado);
 
   const [form, setForm] = useState({
     nome: "",
@@ -32,6 +41,46 @@ const EditResponsavelScreen = () => {
     cidade: "",
     estado: "",
   });
+
+  useEffect(() => {
+    if (logradouro) {
+      setForm({
+        ...form,
+        logradouro: logradouro.nome,
+      });
+      dispatch(clearLogradouro())
+    }
+  }, [dispatch, form, logradouro]);
+
+  useEffect(() => {
+    if (bairro) {
+      setForm({
+        ...form,
+        bairro: bairro.nome,
+      });
+      dispatch(clearBairro())
+    }
+  }, [dispatch, form, bairro]);
+
+  useEffect(() => {
+    if (cidade) {
+      setForm({
+        ...form,
+        cidade: cidade.nome,
+      });
+      dispatch(clearCidade())
+    }
+  }, [dispatch, form, cidade]);
+
+  useEffect(() => {
+    if (estado) {
+      setForm({
+        ...form,
+        estado: estado.nome,
+      });
+      dispatch(clearEstado())
+    }
+  }, [dispatch, form, estado]);
 
   useEffect(() => {
     dispatch(fetchResponsavel(params.id));
@@ -87,7 +136,7 @@ const EditResponsavelScreen = () => {
     };
   }, [dispatch, params.id, router]);
 
-  if (loading) {
+  if (loadingResponsavel || loadingLogradouro || loadingBairro || loadingCidade || loadingEstado) {
     return (
         <View
             style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: theme.colors.background}}>
@@ -176,13 +225,7 @@ const EditResponsavelScreen = () => {
                     onChangeText={(text) => setForm({...form, logradouro: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push({
-                                            pathname: "/logradouro/ListLogradouroScreen",
-                                            params: {
-                                              entidade: "responsavel",
-                                              id: params.id,
-                                            }
-                                          })}/>}
+                                          onPress={() => router.push("/logradouro/ListLogradouroScreen")}/>}
                     label="Logradouro"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, logradouro: ""})}/>}
                     style={{marginBottom: 16}}
@@ -209,13 +252,7 @@ const EditResponsavelScreen = () => {
                     onChangeText={(text) => setForm({...form, bairro: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push({
-                                            pathname: "/bairro/ListBairroScreen",
-                                            params: {
-                                              entidade: "responsavel",
-                                              id: params.id,
-                                            }
-                                          })}/>}
+                                          onPress={() => router.push("/bairro/ListBairroScreen")}/>}
                     label="Bairro"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, bairro: ""})}/>}
                     style={{marginBottom: 16}}
@@ -234,13 +271,7 @@ const EditResponsavelScreen = () => {
                     onChangeText={(text) => setForm({...form, cidade: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push({
-                                            pathname: "/cidade/ListCidadeScreen",
-                                            params: {
-                                              entidade: "responsavel",
-                                              id: params.id,
-                                            }
-                                          })}/>}
+                                          onPress={() => router.push("/cidade/ListCidadeScreen")}/>}
                     label="Cidade"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cidade: ""})}/>}
                     style={{marginBottom: 16}}
@@ -251,13 +282,7 @@ const EditResponsavelScreen = () => {
                     onChangeText={(text) => setForm({...form, estado: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={() => router.push({
-                                            pathname: "/estado/ListEstadoScreen",
-                                            params: {
-                                              entidade: "responsavel",
-                                              id: params.id,
-                                            }
-                                          })}/>}
+                                          onPress={() => router.push("/estado/ListEstadoScreen")}/>}
                     label="Estado"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, estado: ""})}/>}
                     style={{marginBottom: 16}}
