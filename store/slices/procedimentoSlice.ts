@@ -48,6 +48,10 @@ export const fetchProcedimento = createAsyncThunk(
     }
 );
 
+export const clearProcedimento = createAsyncThunk(
+    'procedimento/clearProcedimento',
+    async (_, {rejectWithValue}) => {});
+
 export const addProcedimento = createAsyncThunk(
     'procedimento/addProcedimento',
     async (data: Partial<Procedimento>, {rejectWithValue}) => {
@@ -123,6 +127,19 @@ export const procedimentoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.procedimento = null;
+        })
+        // Handle clearProcedimento
+        .addCase(clearProcedimento.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearProcedimento.fulfilled, (state, action) => {
+          state.loading = false;
+          state.procedimento = null;
+        })
+        .addCase(clearProcedimento.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addProcedimento
         .addCase(addProcedimento.pending, (state) => {

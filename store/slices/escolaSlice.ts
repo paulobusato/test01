@@ -47,6 +47,11 @@ export const fetchEscola = createAsyncThunk(
     }
 );
 
+export const clearEscola = createAsyncThunk(
+    'escola/clearEscola',
+    async (_, {rejectWithValue}) => {}
+);
+
 export const addEscola = createAsyncThunk(
     'escola/addEscola',
     async (data: Partial<Escola>, {rejectWithValue}) => {
@@ -122,6 +127,19 @@ export const escolaSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.escola = null;
+        })
+        // Handle clearEscola
+        .addCase(clearEscola.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearEscola.fulfilled, (state, action) => {
+          state.loading = false;
+          state.escola = null;
+        })
+        .addCase(clearEscola.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addEscola
         .addCase(addEscola.pending, (state) => {

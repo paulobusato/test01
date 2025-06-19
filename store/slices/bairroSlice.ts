@@ -47,6 +47,11 @@ export const fetchBairro = createAsyncThunk(
     }
 );
 
+export const clearBairro = createAsyncThunk(
+    'bairro/clearBairro',
+    async (_, {rejectWithValue}) => {}
+);
+
 export const addBairro = createAsyncThunk(
     'bairro/addBairro',
     async (data: Partial<Bairro>, {rejectWithValue}) => {
@@ -122,6 +127,19 @@ export const bairroSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.bairro = null;
+        })
+        // Handle clearBairro
+        .addCase(clearBairro.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearBairro.fulfilled, (state, action) => {
+          state.loading = false;
+          state.bairro = null;
+        })
+        .addCase(clearBairro.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addBairro
         .addCase(addBairro.pending, (state) => {

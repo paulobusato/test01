@@ -46,6 +46,12 @@ export const fetchAtividade = createAsyncThunk(
     }
 );
 
+export const clearAtividade = createAsyncThunk(
+    'atividade/clearAtividade',
+    async (_, {rejectWithValue}) => {}
+);
+
+
 export const addAtividade = createAsyncThunk(
     'atividade/addAtividade',
     async (data: Partial<Atividade>, {rejectWithValue}) => {
@@ -123,6 +129,19 @@ export const atividadeSlice = createSlice({
           state.error = action.payload as string;
           state.atividade = null;
         })
+        // Handle clearAtividade
+        .addCase(clearAtividade.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearAtividade.fulfilled, (state, action) => {
+          state.loading = false;
+          state.atividade = null;
+        })
+        .addCase(clearAtividade.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        })
         // Handle addAtividade
         .addCase(addAtividade.pending, (state) => {
           state.loading = true;
@@ -155,7 +174,7 @@ export const atividadeSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
         })
-        // Handle deleteAluno
+        // Handle deleteAtividade
         .addCase(deleteAtividade.pending, (state) => {
           state.loading = true;
           state.error = null;

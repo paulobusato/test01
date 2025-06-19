@@ -47,6 +47,10 @@ export const fetchNacionalidade = createAsyncThunk(
     }
 );
 
+export const clearNacionalidade = createAsyncThunk(
+    'nacionalidade/clearNacionalidade',
+    async (_, {rejectWithValue}) => {});
+
 export const addNacionalidade = createAsyncThunk(
     'nacionalidade/addNacionalidade',
     async (data: Partial<Nacionalidade>, {rejectWithValue}) => {
@@ -122,6 +126,19 @@ export const nacionalidadeSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.nacionalidade = null;
+        })
+        // Handle clearNacionalidade
+        .addCase(clearNacionalidade.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearNacionalidade.fulfilled, (state, action) => {
+          state.loading = false;
+          state.nacionalidade = null;
+        })
+        .addCase(clearNacionalidade.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addNacionalidade
         .addCase(addNacionalidade.pending, (state) => {

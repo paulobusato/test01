@@ -47,6 +47,10 @@ export const fetchEstado = createAsyncThunk(
     }
 );
 
+export const clearEstado = createAsyncThunk(
+    'estado/clearEstado',
+    async (_, {rejectWithValue}) => {});
+
 export const addEstado = createAsyncThunk(
     'estado/addEstado',
     async (data: Partial<Estado>, {rejectWithValue}) => {
@@ -123,6 +127,19 @@ export const estadoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.estado = null;
+        })
+        // Handle clearEstado
+        .addCase(clearEstado.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearEstado.fulfilled, (state, action) => {
+          state.loading = false;
+          state.estado = null;
+        })
+        .addCase(clearEstado.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addEstado
         .addCase(addEstado.pending, (state) => {

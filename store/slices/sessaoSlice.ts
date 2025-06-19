@@ -46,6 +46,11 @@ export const fetchSessao = createAsyncThunk(
     }
 );
 
+export const clearSessao = createAsyncThunk(
+    'sessao/clearSessao',
+    async (_, {rejectWithValue}) => {}
+);
+
 export const addSessao = createAsyncThunk(
     'sessao/addSessao',
     async (data: Partial<Sessao>, {rejectWithValue}) => {
@@ -121,6 +126,19 @@ export const sessaoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.sessao = null;
+        })
+        // Handle clearSessao
+        .addCase(clearSessao.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearSessao.fulfilled, (state, action) => {
+          state.loading = false;
+          state.sessao = null;
+        })
+        .addCase(clearSessao.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addSessao
         .addCase(addSessao.pending, (state) => {

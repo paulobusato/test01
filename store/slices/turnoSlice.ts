@@ -47,6 +47,10 @@ export const fetchTurno = createAsyncThunk(
     }
 );
 
+export const clearTurno = createAsyncThunk(
+    'turno/clearTurno',
+    async (_, {rejectWithValue}) => {});
+
 export const addTurno = createAsyncThunk(
     'turno/addTurno',
     async (data: Partial<Turno>, {rejectWithValue}) => {
@@ -122,6 +126,19 @@ export const turnoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.turno = null;
+        })
+        // Handle clearTurno
+        .addCase(clearTurno.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearTurno.fulfilled, (state, action) => {
+          state.loading = false;
+          state.turno = null;
+        })
+        .addCase(clearTurno.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addTurno
         .addCase(addTurno.pending, (state) => {

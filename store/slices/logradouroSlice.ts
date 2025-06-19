@@ -47,6 +47,11 @@ export const fetchLogradouro = createAsyncThunk(
     }
 );
 
+export const clearLogradouro = createAsyncThunk(
+    'logradouro/clearLogradouro',
+    async (_, {rejectWithValue}) => {});
+
+
 export const addLogradouro = createAsyncThunk(
     'logradouro/addLogradouro',
     async (data: Partial<Logradouro>, {rejectWithValue}) => {
@@ -122,6 +127,19 @@ export const logradouroSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.logradouro = null;
+        })
+        // Handle clearLogradouro
+        .addCase(clearLogradouro.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearLogradouro.fulfilled, (state, action) => {
+          state.loading = false;
+          state.logradouro = null;
+        })
+        .addCase(clearLogradouro.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addLogradouro
         .addCase(addLogradouro.pending, (state) => {

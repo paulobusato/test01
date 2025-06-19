@@ -46,6 +46,11 @@ export const fetchAluno = createAsyncThunk(
     }
 );
 
+export const clearAluno = createAsyncThunk(
+    'aluno/clearAluno',
+    async (_, {rejectWithValue}) => {}
+);
+
 export const addAluno = createAsyncThunk(
     'aluno/addAluno',
     async (data: Partial<Aluno>, {rejectWithValue}) => {
@@ -121,6 +126,19 @@ export const alunoSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.aluno = null;
+        })
+        // Handle clearAluno
+        .addCase(clearAluno.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearAluno.fulfilled, (state, action) => {
+          state.loading = false;
+          state.aluno = null;
+        })
+        .addCase(clearAluno.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addAluno
         .addCase(addAluno.pending, (state) => {

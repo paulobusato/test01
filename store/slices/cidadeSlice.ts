@@ -47,6 +47,11 @@ export const fetchCidade = createAsyncThunk(
     }
 );
 
+export const clearCidade = createAsyncThunk(
+    'cidade/clearCidade',
+    async (_, {rejectWithValue}) => {}
+);
+
 export const addCidade = createAsyncThunk(
     'cidade/addCidade',
     async (data: Partial<Cidade>, {rejectWithValue}) => {
@@ -123,6 +128,19 @@ export const cidadeSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.cidade = null;
+        })
+        // Handle clearCidade
+        .addCase(clearCidade.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearCidade.fulfilled, (state, action) => {
+          state.loading = false;
+          state.cidade = null;
+        })
+        .addCase(clearCidade.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addCidade
         .addCase(addCidade.pending, (state) => {
