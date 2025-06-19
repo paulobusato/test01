@@ -125,6 +125,7 @@ const EditResponsavelScreen = () => {
                 <TextInput
                     mode={"outlined"}
                     value={form.cpf}
+                    keyboardType={"numeric"}
                     onChangeText={(text) => setForm({...form, cpf: text})}
                     label="CPF"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cpf: ""})}/>}
@@ -133,6 +134,7 @@ const EditResponsavelScreen = () => {
                 <TextInput
                     mode={"outlined"}
                     value={form.telefone}
+                    keyboardType={"numeric"}
                     onChangeText={(text) => setForm({...form, telefone: text})}
                     label="Telefone"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, telefone: ""})}/>}
@@ -141,6 +143,7 @@ const EditResponsavelScreen = () => {
                 <TextInput
                     mode={"outlined"}
                     value={form.email}
+                    keyboardType={"email-address"}
                     onChangeText={(text) => setForm({...form, email: text})}
                     label="E-mail"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, email: ""})}/>}
