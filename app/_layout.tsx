@@ -83,18 +83,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="responsavel/EditResponsavelScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Responsável",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="sessao/ListSessaoScreen"
@@ -143,18 +157,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="atividade/EditAtividadeScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Atividade",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="logradouro/ListLogradouroScreen"
@@ -166,18 +194,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="logradouro/EditLogradouroScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Logradouro",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="bairro/ListBairroScreen"
@@ -189,18 +231,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="bairro/EditBairroScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Bairro",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="cidade/ListCidadeScreen"
@@ -212,18 +268,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="cidade/EditCidadeScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Cidade",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="estado/ListEstadoScreen"
@@ -235,18 +305,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="estado/EditEstadoScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Estado",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="escola/ListEscolaScreen"
@@ -258,18 +342,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="escola/EditEscolaScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Escola",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="turno/ListTurnoScreen"
@@ -281,18 +379,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="turno/EditTurnoScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Turno",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="nacionalidade/ListNacionalidadeScreen"
@@ -304,18 +416,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="nacionalidade/EditNacionalidadeScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Nacionalidade",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="procedimento/ListProcedimentoScreen"
@@ -327,18 +453,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="procedimento/EditProcedimentoScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Procedimento",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
               <Stack.Screen
                   name="status/ListStatusScreen"
@@ -350,18 +490,32 @@ export default function RootLayout() {
               />
               <Stack.Screen
                   name="status/EditStatusScreen"
-                  options={{
+                  options={({route}) => ({
                     title: "Status",
                     headerTitleAlign: "center",
                     headerShadowVisible: false,
-                    headerRight: () => (
-                        <IconButton
-                            icon="trash-can-outline"
-                            size={24}
-                            onPress={() => console.log("Action button pressed")}
-                        />
-                    ),
-                  }}
+                    headerRight: () => {
+                      // @ts-ignore
+                      const {id} = route.params || {};
+                      if (!id) return null;
+
+                      return (
+                          <IconButton
+                              icon="trash-can-outline"
+                              size={24}
+                              onPress={() => {
+                                // @ts-ignore
+                                if (window["handleDelete"]) {
+                                  // @ts-ignore
+                                  window["handleDelete"]();
+                                } else {
+                                  console.log("handleDelete not initialized");
+                                }
+                              }}
+                          />
+                      );
+                    }
+                  })}
               />
             </Stack>
           </PaperProvider>
