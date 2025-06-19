@@ -26,8 +26,10 @@ const ListSessaoScreen = () => {
         <View style={{padding: 16}}>
           <SearchInput value={text} onValueChange={setText} onRightPress={() => setText("")}/>
           <FlatList
-              data={sessoes.filter((sessao) =>
-                  sessao.nome.toLowerCase().includes(text.toLowerCase())
+              data={sessoes.filter((sessao) => {
+                    if (!sessao.nome) return true;
+                    return sessao.nome.toLowerCase().includes(text.toLowerCase());
+                  }
               )}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({item}) => (
