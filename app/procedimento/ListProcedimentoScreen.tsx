@@ -1,13 +1,12 @@
 import React, {useEffect} from "react";
 import {useAppSelector, useAppDispatch} from '@/store/hooks';
+import {fetchProcedimento, fetchProcedimentos} from "@/store/slices/procedimentoSlice";
 import ListScreen from "@/components/ListScreen";
-import {useLocalSearchParams, useRouter} from "expo-router";
-import {fetchProcedimentos} from "@/store/slices/procedimentoSlice";
-import {updateSessao} from "@/store/slices/sessaoSlice";
+import {useRouter} from "expo-router";
+
 
 const ListProcedimentoScreen = () => {
   const dispatch = useAppDispatch();
-  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
   const {procedimentos} = useAppSelector((state) => state.procedimento);
@@ -16,13 +15,8 @@ const ListProcedimentoScreen = () => {
     dispatch(fetchProcedimentos());
   }, [dispatch]);
 
-  const handleClick = (procedimento: string) => {
-    dispatch(updateSessao({
-      id: params.id,
-      data: {
-        procedimento: procedimento,
-      }
-    }));
+  const handleClick = (id: string) => {
+    dispatch(fetchProcedimento(id));
     router.back();
   }
 

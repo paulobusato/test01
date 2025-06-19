@@ -4,15 +4,13 @@ import {FlatList, View} from "react-native";
 
 import {FAB, useTheme} from "react-native-paper";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {addAluno, fetchAlunos} from "@/store/slices/alunoSlice";
-import {useLocalSearchParams, useRouter} from "expo-router";
+import {addAluno, fetchAluno, fetchAlunos} from "@/store/slices/alunoSlice";
+import {useRouter} from "expo-router";
 import NameCard from "@/components/NameCard";
-import {updateSessao} from "@/store/slices/sessaoSlice";
 
 const ListAlunoScreen = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
-  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
   const [text, setText] = React.useState("");
@@ -23,13 +21,8 @@ const ListAlunoScreen = () => {
     dispatch(fetchAlunos());
   }, [dispatch]);
 
-  const handleClick = async (nome: string) => {
-    dispatch(updateSessao({
-      id: params.id,
-      data: {
-        nome: nome,
-      }
-    }));
+  const handleClick = async (id: string) => {
+    dispatch(fetchAluno(id));
     router.back();
   }
 

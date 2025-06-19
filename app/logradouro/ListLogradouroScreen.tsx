@@ -1,14 +1,11 @@
 import React, {useEffect} from "react";
 import {useAppSelector, useAppDispatch} from '@/store/hooks';
-import {fetchLogradouros} from '@/store/slices/logradouroSlice';
+import {fetchLogradouro, fetchLogradouros} from '@/store/slices/logradouroSlice';
 import ListScreen from "@/components/ListScreen";
-import {useLocalSearchParams, useRouter} from "expo-router";
-import {updateAluno} from "@/store/slices/alunoSlice";
-import {updateResponsavel} from "@/store/slices/responsavelSlice";
+import {useRouter} from "expo-router";
 
 const ListLogradouroScreen = () => {
   const dispatch = useAppDispatch();
-  const params: { id: string, entidade: string } = useLocalSearchParams();
   const router = useRouter();
 
   const {logradouros} = useAppSelector((state) => state.logradouro);
@@ -17,23 +14,8 @@ const ListLogradouroScreen = () => {
     dispatch(fetchLogradouros());
   }, [dispatch]);
 
-  const handleClick = (logradouro: string) => {
-    if (params.entidade === "aluno") {
-      dispatch(updateAluno({
-        id: params.id,
-        data: {
-          logradouro: logradouro,
-        }
-      }));
-    }
-    if (params.entidade === "responsavel") {
-      dispatch(updateResponsavel({
-        id: params.id,
-        data: {
-          logradouro: logradouro,
-        }
-      }));
-    }
+  const handleClick = (id: string) => {
+    dispatch(fetchLogradouro(id));
     router.back();
   }
 

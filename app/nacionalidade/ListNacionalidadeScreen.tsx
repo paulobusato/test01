@@ -1,13 +1,11 @@
 import React, {useEffect} from "react";
 import {useAppSelector, useAppDispatch} from '@/store/hooks';
+import {fetchNacionalidade, fetchNacionalidades} from "@/store/slices/nacionalidadeSlice";
 import ListScreen from "@/components/ListScreen";
-import {useLocalSearchParams, useRouter} from "expo-router";
-import {updateResponsavel} from "@/store/slices/responsavelSlice";
-import {fetchNacionalidades} from "@/store/slices/nacionalidadeSlice";
+import {useRouter} from "expo-router";
 
 const ListNacionalidadeScreen = () => {
   const dispatch = useAppDispatch();
-  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
   const {nacionalidades} = useAppSelector((state) => state.nacionalidade);
@@ -16,13 +14,8 @@ const ListNacionalidadeScreen = () => {
     dispatch(fetchNacionalidades());
   }, [dispatch]);
 
-  const handleClick = (nacionalidade: string) => {
-    dispatch(updateResponsavel({
-      id: params.id,
-      data: {
-        nacionalidade: nacionalidade,
-      }
-    }));
+  const handleClick = (id: string) => {
+    dispatch(fetchNacionalidade(id));
     router.back();
   }
 

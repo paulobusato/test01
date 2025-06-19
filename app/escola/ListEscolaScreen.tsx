@@ -1,13 +1,11 @@
 import React, {useEffect} from "react";
 import {useAppSelector, useAppDispatch} from '@/store/hooks';
-import {fetchEscolas} from '@/store/slices/escolaSlice';
+import {fetchEscola, fetchEscolas} from '@/store/slices/escolaSlice';
 import ListScreen from "@/components/ListScreen";
-import {useLocalSearchParams, useRouter} from "expo-router";
-import {updateAluno} from "@/store/slices/alunoSlice";
+import {useRouter} from "expo-router";
 
 const ListEscolaScreen = () => {
   const dispatch = useAppDispatch();
-  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
   const {escolas} = useAppSelector((state) => state.escola);
@@ -16,13 +14,8 @@ const ListEscolaScreen = () => {
     dispatch(fetchEscolas());
   }, [dispatch]);
 
-  const handleClick = (escola: string) => {
-    dispatch(updateAluno({
-      id: params.id,
-      data: {
-        escola: escola,
-      }
-    }));
+  const handleClick = (id: string) => {
+    dispatch(fetchEscola(id));
     router.back();
   }
 

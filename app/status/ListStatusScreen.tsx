@@ -1,13 +1,12 @@
 import React, {useEffect} from "react";
 import {useAppSelector, useAppDispatch} from '@/store/hooks';
+import {fetchStatus, fetchStatuses} from "@/store/slices/statusSlice";
 import ListScreen from "@/components/ListScreen";
-import {useLocalSearchParams, useRouter} from "expo-router";
-import {updateSessao} from "@/store/slices/sessaoSlice";
-import {fetchStatuses} from "@/store/slices/statusSlice";
+import {useRouter} from "expo-router";
+
 
 const ListStatusScreen = () => {
   const dispatch = useAppDispatch();
-  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
   const {statuses} = useAppSelector((state) => state.status);
@@ -16,13 +15,8 @@ const ListStatusScreen = () => {
     dispatch(fetchStatuses());
   }, [dispatch]);
 
-  const handleClick = (status: string) => {
-    dispatch(updateSessao({
-      id: params.id,
-      data: {
-        status: status,
-      }
-    }));
+  const handleClick = (id: string) => {
+    dispatch(fetchStatus(id));
     router.back();
   }
 

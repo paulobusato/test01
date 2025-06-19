@@ -7,7 +7,7 @@ export interface NameCardProps {
   id: string,
   name: string,
   route: Href;
-  onClick: (nome: string) => void;
+  onClick: (id: string) => void;
 }
 
 const NameCard = ({id, name, route, onClick}: NameCardProps) => {

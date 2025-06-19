@@ -1,13 +1,11 @@
 import React, {useEffect} from "react";
 import {useAppSelector, useAppDispatch} from '@/store/hooks';
-import {fetchTurnos} from '@/store/slices/turnoSlice';
+import {fetchTurno, fetchTurnos} from '@/store/slices/turnoSlice';
 import ListScreen from "@/components/ListScreen";
-import {useLocalSearchParams, useRouter} from "expo-router";
-import {updateAluno} from "@/store/slices/alunoSlice";
+import {useRouter} from "expo-router";
 
 const ListTurnoScreen = () => {
   const dispatch = useAppDispatch();
-  const params: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
   const {turnos} = useAppSelector((state) => state.turno);
@@ -16,13 +14,8 @@ const ListTurnoScreen = () => {
     dispatch(fetchTurnos());
   }, [dispatch]);
 
-  const handleClick = (turno: string) => {
-    dispatch(updateAluno({
-      id: params.id,
-      data: {
-        turno: turno,
-      }
-    }));
+  const handleClick = (id: string) => {
+    dispatch(fetchTurno(id));
     router.back();
   }
 
