@@ -90,7 +90,7 @@ const EditStatusScreen = () => {
               value={form.nome}
               onChangeText={(text) => setForm({...form, nome: text})}
               label="Nome"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
+              right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, nome: ""})}/>}
               style={{marginBottom: 16}}
           />
         </View>

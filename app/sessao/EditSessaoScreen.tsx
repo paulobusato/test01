@@ -171,7 +171,7 @@ const EditSessaoScreen = () => {
                                         })
                                       }}/>}
                 label="Aluno"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
+                right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, nome: ""})}/>}
                 editable={false}
                 style={{marginBottom: 16}}
             />
@@ -190,7 +190,7 @@ const EditSessaoScreen = () => {
                                         })
                                       }}/>}
                 label="Atividade"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
+                right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, atividade: ""})}/>}
                 editable={false}
                 style={{marginBottom: 16}}
             />
@@ -209,7 +209,7 @@ const EditSessaoScreen = () => {
                                         })
                                       }}/>}
                 label="Status"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
+                right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, status: ""})}/>}
                 editable={false}
                 style={{marginBottom: 16}}
             />
@@ -228,7 +228,7 @@ const EditSessaoScreen = () => {
                                         })
                                       }}/>}
                 label="Procedimento"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
+                right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, procedimento: ""})}/>}
                 editable={false}
                 style={{marginBottom: 16}}
             />
@@ -263,7 +263,7 @@ const EditSessaoScreen = () => {
                 value={form.queixa}
                 onChangeText={(text) => setForm({...form, queixa: text})}
                 label="Queixa"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
+                right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, queixa: ""})}/>}
                 multiline={true}
                 numberOfLines={5}
                 style={{marginBottom: 16, minHeight: 100}}
@@ -273,7 +273,7 @@ const EditSessaoScreen = () => {
                 value={form.encaminhamento}
                 onChangeText={(text) => setForm({...form, encaminhamento: text})}
                 label="Encaminhamento"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
+                right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, encaminhamento: ""})}/>}
                 multiline={true}
                 numberOfLines={5}
                 style={{marginBottom: 16, minHeight: 100}}
@@ -283,7 +283,7 @@ const EditSessaoScreen = () => {
                 value={form.observacao}
                 onChangeText={(text) => setForm({...form, observacao: text})}
                 label="Observação"
-                right={<TextInput.Icon icon="close-circle-outline"/>}
+                right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, observacao: ""})}/>}
                 multiline={true}
                 numberOfLines={5}
                 style={{marginBottom: 16, minHeight: 100}}

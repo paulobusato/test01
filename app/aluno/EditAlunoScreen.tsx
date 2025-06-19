@@ -140,7 +140,7 @@ const EditAlunoScreen = () => {
                     value={form.nome}
                     onChangeText={(text) => setForm({...form, nome: text})}
                     label="Nome"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, nome: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -157,7 +157,7 @@ const EditAlunoScreen = () => {
                                           }
                                           }/>}
                     label="Responsável"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, responsavel: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -165,7 +165,7 @@ const EditAlunoScreen = () => {
                     value={form.cpf}
                     onChangeText={(text) => setForm({...form, cpf: text})}
                     label="CPF"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cpf: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -173,7 +173,7 @@ const EditAlunoScreen = () => {
                     value={form.telefone}
                     onChangeText={(text) => setForm({...form, telefone: text})}
                     label="Telefone"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, telefone: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -181,7 +181,7 @@ const EditAlunoScreen = () => {
                     value={form.email}
                     onChangeText={(text) => setForm({...form, email: text})}
                     label="E-mail"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, email: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -189,7 +189,7 @@ const EditAlunoScreen = () => {
                     value={form.dataNascimento}
                     onChangeText={(text) => setForm({...form, dataNascimento: text})}
                     label="Data de Nascimento"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, dataNascimento: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -197,7 +197,7 @@ const EditAlunoScreen = () => {
                     value={form.rg}
                     onChangeText={(text) => setForm({...form, rg: text})}
                     label="RG"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, rg: ""})}/>}
                     style={{marginBottom: 16}}
                 />
               </>
@@ -218,7 +218,7 @@ const EditAlunoScreen = () => {
                                             });
                                           }}/>}
                     label="Escola"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, escola: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -226,7 +226,7 @@ const EditAlunoScreen = () => {
                     value={form.serie}
                     onChangeText={(text) => setForm({...form, serie: text})}
                     label="Série"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, serie: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -242,7 +242,7 @@ const EditAlunoScreen = () => {
                                             })
                                           }}/>}
                     label="Turno"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, turno: ""})}/>}
                     style={{marginBottom: 16}}
                 />
               </>
@@ -266,7 +266,7 @@ const EditAlunoScreen = () => {
                                             })
                                           }}/>}
                     label="Logradouro"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, logradouro: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -274,7 +274,7 @@ const EditAlunoScreen = () => {
                     value={form.numero}
                     onChangeText={(text) => setForm({...form, numero: text})}
                     label="Número"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, numero: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -282,7 +282,7 @@ const EditAlunoScreen = () => {
                     value={form.complemento}
                     onChangeText={(text) => setForm({...form, complemento: text})}
                     label="Complemento"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, complemento: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -301,7 +301,7 @@ const EditAlunoScreen = () => {
                                             })
                                           }}/>}
                     label="Bairro"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, bairro: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -309,7 +309,7 @@ const EditAlunoScreen = () => {
                     value={form.cep}
                     onChangeText={(text) => setForm({...form, cep: text})}
                     label="CEP"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cep: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -328,7 +328,7 @@ const EditAlunoScreen = () => {
                                             })
                                           }}/>}
                     label="Cidade"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, cidade: ""})}/>}
                     style={{marginBottom: 16}}
                 />
                 <TextInput
@@ -347,7 +347,7 @@ const EditAlunoScreen = () => {
                                             })
                                           }}/>}
                     label="Estado"
-                    right={<TextInput.Icon icon="close-circle-outline"/>}
+                    right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, estado: ""})}/>}
                     style={{marginBottom: 16}}
                 />
               </>

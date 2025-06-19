@@ -94,7 +94,7 @@ const EditAtividadeScreen = () => {
               value={form.nome}
               onChangeText={(text) => setForm({...form, nome: text})}
               label="Nome"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
+              right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, nome: ""})}/>}
               style={{marginBottom: 16}}
           />
           <TextInput
@@ -102,7 +102,7 @@ const EditAtividadeScreen = () => {
               value={form.descricao}
               onChangeText={(text) => setForm({...form, descricao: text})}
               label="Descrição"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
+              right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, descricao: ""})}/>}
               style={{marginBottom: 16}}
           />
           <TextInput
@@ -110,7 +110,7 @@ const EditAtividadeScreen = () => {
               value={form.categoria}
               onChangeText={(text) => setForm({...form, categoria: text})}
               label="Categoria"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
+              right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, categoria: ""})}/>}
               style={{marginBottom: 16}}
           />
           <TextInput
@@ -118,7 +118,7 @@ const EditAtividadeScreen = () => {
               value={form.assuntos}
               onChangeText={(text) => setForm({...form, assuntos: text})}
               label="Assunto"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
+              right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, assuntos: ""})}/>}
               style={{marginBottom: 16}}
           />
           <TextInput
@@ -126,7 +126,7 @@ const EditAtividadeScreen = () => {
               value={form.areaAplicacao}
               onChangeText={(text) => setForm({...form, areaAplicacao: text})}
               label="Areas de aplicação"
-              right={<TextInput.Icon icon="close-circle-outline"/>}
+              right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, areaAplicacao: ""})}/>}
               style={{marginBottom: 16}}
           />
         </View>
