@@ -4,6 +4,7 @@ import {ActivityIndicator, FAB, SegmentedButtons, TextInput, useTheme} from "rea
 import {useLocalSearchParams, useRouter} from "expo-router";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {addAluno, deleteAluno, fetchAluno, updateAluno} from "@/store/slices/alunoSlice";
+import {clearResponsavel} from "@/store/slices/responsavelSlice";
 
 const EditAlunoScreen = () => {
   const theme = useTheme();
@@ -13,7 +14,8 @@ const EditAlunoScreen = () => {
 
   const [tab, setTab] = useState("pessoal");
 
-  const {aluno, loading} = useAppSelector((state) => state.aluno);
+  const {aluno, loading: loadingAluno} = useAppSelector((state) => state.aluno);
+  const {responsavel, loading: loadingResponsavel} = useAppSelector((state) => state.responsavel);
 
   const [form, setForm] = useState({
     nome: "",
@@ -34,6 +36,16 @@ const EditAlunoScreen = () => {
     cidade: "",
     estado: "",
   });
+
+  useEffect(() => {
+    if (responsavel) {
+      setForm({
+        ...form,
+        responsavel: responsavel.nome,
+      });
+      dispatch(clearResponsavel())
+    }
+  }, [dispatch, form, responsavel]);
 
   useEffect(() => {
     dispatch(fetchAluno(params.id));
@@ -104,7 +116,7 @@ const EditAlunoScreen = () => {
   }, [dispatch, params.id, router]);
 
 
-  if (loading) {
+  if (loadingAluno || loadingResponsavel) {
     return (
         <View
             style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: theme.colors.background}}>
@@ -149,14 +161,7 @@ const EditAlunoScreen = () => {
                     onChangeText={(text) => setForm({...form, responsavel: text})}
                     readOnly={true}
                     left={<TextInput.Icon icon="magnify"
-                                          onPress={async () => {
-                                            await handleSave()
-                                            router.push({
-                                              pathname: "/responsavel/ListResponsavelScreen",
-                                              params: {id: params.id}
-                                            })
-                                          }
-                                          }/>}
+                                          onPress={async () => router.push("/responsavel/ListResponsavelScreen")}/>}
                     label="Responsável"
                     right={<TextInput.Icon icon="close-circle-outline" onPress={(text) => setForm({...form, responsavel: ""})}/>}
                     style={{marginBottom: 16}}

@@ -47,6 +47,11 @@ export const fetchResponsavel = createAsyncThunk(
     }
 );
 
+export const clearResponsavel = createAsyncThunk(
+    'responsavel/clearResponsavel',
+    async (_, {rejectWithValue}) => {}
+);
+
 export const addResponsavel = createAsyncThunk(
     'responsavel/addResponsavel',
     async (data: Partial<Responsavel>, {rejectWithValue}) => {
@@ -122,6 +127,19 @@ export const responsavelSlice = createSlice({
           state.loading = false;
           state.error = action.payload as string;
           state.responsavel = null;
+        })
+        // Handle clearResponsavel
+        .addCase(clearResponsavel.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(clearResponsavel.fulfilled, (state, action) => {
+          state.loading = false;
+          state.responsavel = null;
+        })
+        .addCase(clearResponsavel.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
         })
         // Handle addResponsavel
         .addCase(addResponsavel.pending, (state) => {

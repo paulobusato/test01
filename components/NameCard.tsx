@@ -16,7 +16,7 @@ const NameCard = ({id, name, route, onClick}: NameCardProps) => {
   return (
       <Card
           mode="outlined"
-          onPress={() => onClick(name)}
+          onPress={() => onClick(id)}
           contentStyle={{padding: 8}}
           style={{marginBottom: 8}}
       >

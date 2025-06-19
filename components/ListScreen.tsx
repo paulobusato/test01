@@ -14,7 +14,7 @@ export interface ListEnderecoScreenProps {
   fabLabel: string,
   data: Logradouro[] | Bairro[] | Cidade[] | Estado[] | Atividade[],
   route: Href,
-  onClick: (nome: string) => void,
+  onClick: (id: string) => void,
 }
 
 const ListScreen = ({fabLabel, data, route, onClick}: ListEnderecoScreenProps) => {
