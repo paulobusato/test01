@@ -11,15 +11,8 @@ import "@/global.css";
 import {Provider} from 'react-redux';
 import {store} from '@/store/store';
 
-// Optional: Define a custom theme or use the default
 const theme = {
   ...DefaultTheme,
-  // Add your custom theme properties here if needed
-  // colors: {
-  //   ...DefaultTheme.colors,
-  //   primary: 'tomato',
-  //   accent: 'yellow',
-  // },
   colors: {
     ...DefaultTheme.colors,
     primary: "#1976d2",
