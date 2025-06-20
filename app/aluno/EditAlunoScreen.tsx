@@ -276,6 +276,8 @@ const EditAlunoScreen = () => {
                     mode={"outlined"}
                     value={form.dataNascimento}
                     onChangeText={(text) => setForm({...form, dataNascimento: text})}
+                    left={<TextInput.Icon icon="calendar-edit"
+                                          onPress={async () => router.push("/responsavel/ListResponsavelScreen")}/>}
                     label="Data de Nascimento"
                     right={<TextInput.Icon icon="close-circle-outline"
                                            onPress={(text) => setForm({...form, dataNascimento: ""})}/>}
